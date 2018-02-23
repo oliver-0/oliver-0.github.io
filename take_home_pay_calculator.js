@@ -1,4 +1,4 @@
-// taxPayable_function - calculates the total tax payable based on gross income
+﻿// taxPayable_function - calculates the total tax payable based on gross income
 // - depends on personalAllowanceCap_function(), and therefore roundDownToNearest2Pound_function() also.
 // Declarations for taxPayable_function():
 var basic_Rate, higher_Rate, additional_Rate, basic_Rate_Cap, higher_Rate_Cap;
@@ -13,10 +13,8 @@ higher_Rate_Cap = 150000;
 //#else tax_Payable = 0 
 function taxPayable_function(gross_Income) {
 	if (gross_Income >= higher_Rate_Cap) {
-		console.log("higher")
 		return ((gross_Income - higher_Rate_Cap) * additional_Rate) + ((higher_Rate_Cap - basic_Rate_Cap) * higher_Rate) + ((basic_Rate_Cap - personalAllowanceCap_function(gross_Income)) * basic_Rate);
 	} else if(gross_Income >= basic_Rate_Cap) {
-		console.log("yes")
 		return ((gross_Income - basic_Rate_Cap) * higher_Rate) + ((basic_Rate_Cap - personalAllowanceCap_function(gross_Income)) * basic_Rate);
 	} else if(gross_Income >= personalAllowanceCap_function(gross_Income)) {
 		return (gross_Income - personalAllowanceCap_function(gross_Income)) * basic_Rate;
