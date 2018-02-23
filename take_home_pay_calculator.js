@@ -1,4 +1,4 @@
-﻿// taxPayable_function - calculates the total tax payable based on gross income
+// taxPayable_function - calculates the total tax payable based on gross income
 // - depends on personalAllowanceCap_function(), and therefore roundDownToNearest2Pound_function() also.
 // Declarations for taxPayable_function():
 var basic_Rate, higher_Rate, additional_Rate, basic_Rate_Cap, higher_Rate_Cap;
@@ -7,29 +7,28 @@ higher_Rate = 0.40;
 additional_Rate = 0.45;
 basic_Rate_Cap = 45000;
 higher_Rate_Cap = 150000;
+// Declarations for personalAllowanceCap_function():
+var personal_Allowance_Cap_Basic, personal_Allowance_Max_Income, personal_Allowance_Min_Income;
+personal_Allowance_Cap_Basic = 11500;
+personal_Allowance_Max_Income = 123000;
+personal_Allowance_Min_Income = 100000;
 //#if gross_Income >= higher_Rate_Cap, tax_Payable = (( gross_Income - higher_Rate_Cap ) * additional_Rate ) + (( higher_Rate_Cap - basic_Rate_Cap ) * higher_Rate ) + (( basic_Rate_Cap - personal_Allowance_Cap ) * basic_Rate ), 
 //#elseif gross_Income >= basic_Rate_Cap, tax_Payable = (( gross_Income - basic_Rate_Cap ) * higher_Rate ) + (( higher_Rate_Cap - personal_Allowance_Cap ) * basic_Rate ), 
 //#elseif gross_Income >= personal_Allowance_Cap, tax_Payable = (gross_Income - personal_Allowance_Cap ) * basic_Rate, 
 //#else tax_Payable = 0 
 function taxPayable_function(gross_Income) {
-	if (gross_Income >= higher_Rate_Cap) {
+	if (gross_Income >= higher_Rate_Cap) { //if income is over 150k
 		return ((gross_Income - higher_Rate_Cap) * additional_Rate) + ((higher_Rate_Cap - basic_Rate_Cap) * higher_Rate) + ((basic_Rate_Cap - personalAllowanceCap_function(gross_Income)) * basic_Rate);
-	} else if(gross_Income >= basic_Rate_Cap) {
-		return ((gross_Income - basic_Rate_Cap) * higher_Rate) + ((basic_Rate_Cap - personalAllowanceCap_function(gross_Income)) * basic_Rate);
+	} else if(gross_Income >= basic_Rate_Cap) { //if income is over 45k
+		return ((gross_Income - basic_Rate_Cap + (personal_Allowance_Cap_Basic - personalAllowanceCap_function(gross_Income))) * higher_Rate) + ((basic_Rate_Cap - personal_Allowance_Cap_Basic) * basic_Rate);
 	} else if(gross_Income >= personalAllowanceCap_function(gross_Income)) {
 		return (gross_Income - personalAllowanceCap_function(gross_Income)) * basic_Rate;
 	} else {
 		return 0;
 	}
 }
-
-
 // personalAllowanceCap_function - calculates the annual Personal Allowance based on gross income
-// Declarations for personalAllowanceCap_function():
-var personal_Allowance_Cap_Basic, personal_Allowance_Max_Income, personal_Allowance_Min_Income;
-personal_Allowance_Cap_Basic = 11500;
-personal_Allowance_Max_Income = 123000;
-personal_Allowance_Min_Income = 100000;
+// Functions it depends on:
 function roundDownToNearest2Pound_function(gross_Income){ //rounds a number down to the nearest multiple £2.00
 	return 2 * Math.floor(gross_Income/2);
 }
