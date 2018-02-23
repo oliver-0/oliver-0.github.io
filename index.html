@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Take-Home Pay Calculator</title>
+	<link rel="stylesheet" href="styles.css">
+	<script type="text/javascript" src="take_home_pay_calculator.js"></script>
+</head>
+ 
+<body>
+	<header>
+		<h1 class="mainHeaderText">Take-Home Pay Calculator</h1>
+	</header>
+	<div class="mainBox">
+		<p class="nomargin">Enter Gross Income: <input id="input_Income_id" name="input_Income_name" type="number" oninput="calculateTakeHomePay_function()"></p>
+		<p>
+			<label for="studentLoanPlan0">No Student Loan</label>
+			<input type="radio" id="studentLoanPlan0" name="studentLoan" value="plan0" onchange="calculateTakeHomePay_function()" checked>
+		</p>
+		<p>
+			<label for="studentLoanPlan1">Student Loan Plan 1</label>
+			<input type="radio" id="studentLoanPlan1" name="studentLoan" value="plan1" onchange="calculateTakeHomePay_function()">
+		</p>
+		<p>
+			<label for="studentLoanPlan2">Student Loan Plan 2</label>
+			<input type="radio" id="studentLoanPlan2" name="studentLoan" value="plan2" onchange="calculateTakeHomePay_function()">
+		</p>
+		<p id="outputid"></p>
+		<script type="text/javascript">
+			// Notes
+			//need to add input validation
+			//
+			// This function selects the right Student Loan Repayment Calculation Function and calculates the monthly repayment based on the Income and Loan Type variables
+			function studentLoan_function(income, loanType) {
+				if (loanType == "plan2") {
+					return plan2StudentLoan_function(income)
+				} else if (loanType == "plan1") {
+					return plan1StudentLoan_function(income)
+				} else{
+					return 0
+				}
+			}
+			// This function takes the submitted value in the name:"input_Income_name" field, from the URL. It runs on load of the page
+			function calculateTakeHomePay_function() {
+				var input_Income = document.getElementById('input_Income_id').value //this was used when it took 'onclick' of a button, instead of on submit of a form
+				// This takes the LoanType from the radio buttons in the form inputs
+				var studentLoanType = document.querySelector('input[name="studentLoan"]:checked').value;
+				//console.log("taxPayable:"+taxPayable_function(input_Income))
+				//console.log("studentLoan:"+studentLoan_function(input_Income))
+				//console.log("totalNIConts:"+totalNIConts_function(input_Income))
+				//console.log("personalAllowanceCap"+personalAllowanceCap_function(input_Income))
+				after_Tax_Annual = (input_Income - taxPayable_function(input_Income) - studentLoan_function(input_Income, studentLoanType) - totalNIConts_function(input_Income));
+				//this line divides the calculated annual Take Home Pay by 12 to get Monthly, rounds to 2dp, and puts the result into the page
+				var output = (1/100)*Math.floor((after_Tax_Annual/12)*100)
+				var rounded_Output = output.toFixed(2)
+				document.getElementById('outputid').innerHTML = "Monthly Take Home Pay: "+ rounded_Output
+			}
+		</script>
+	</div>
+</body>
+</html>
