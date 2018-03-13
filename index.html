@@ -74,7 +74,7 @@
 				//console.log("personalAllowanceCap"+personalAllowanceCap_function(input_Income))
 				after_Tax_Annual = (input_Income - taxPayable_function(input_Income) - studentLoan_function(input_Income, studentLoanType) - totalNIConts_function(input_Income));
 				//this line divides the calculated annual Take Home Pay by 12 to get Monthly, rounds to 2dp, and puts the result into the page
-				var yearlyOutput = (1/100)*Math.floor((after_Tax_Annual/12)*100);
+				var yearlyOutput = (1/100)*Math.floor((after_Tax_Annual)*100);
 				var monthlyOutput = yearlyOutput/12;
 				var weeklyOutput = yearlyOutput/52;
 				// Rounding to 2dp isn't working perfectly, so toFixed() is a workaround on the output to force it to 2dp.
