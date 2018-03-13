@@ -4,8 +4,9 @@
 	<title>Take-Home Pay Calculator</title>
 	<link rel="stylesheet" href="styles.css">
 	<script type="text/javascript" src="take_home_pay_calculator.js"></script>
+	<script type="text/javascript" src="radiobox.js"></script>
 </head>
- 
+
 <body>
 	<header>
 		<h1 class="mainHeaderText">Take-Home Pay Calculator</h1>
@@ -25,6 +26,28 @@
 			<input type="radio" id="studentLoanPlan2" name="studentLoan" value="plan2" onchange="calculateTakeHomePay_function()">
 		</p>
 		<p id="outputid"></p>
+
+
+
+
+		<p>..</p>
+		    <input type="radio" name="radiobox" id="radioboxbutton-yearly" value="yearly" onclick="showyearly()" checked hidden>
+		    <label class="radiobox-label" for="radioboxbutton-yearly">Yearly</label>
+		    <input type="radio" name="radiobox" id="radioboxbutton-monthly" value="monthly" onclick="showmonthly()" hidden>
+		    <label class="radiobox-label" for="radioboxbutton-monthly">Monthly</label>
+		    <input type="radio" name="radiobox" id="radioboxbutton-weekly" value="weekly" onclick="showweekly()" hidden>
+		    <label class="radiobox-label" for="radioboxbutton-weekly">Weekly</label>
+		<br>
+		<p>
+		  <div class="radiobox" id="yearly-box">Yearly Take Home Pay: £0.00 </div>
+		  <div class="radiobox" id="monthly-box" hidden>Monthly Take Home Pay: £0.00 </div>
+		  <div class="radiobox" id="weekly-box" hidden>Weekly Take Home Pay: £0.00 </div>
+		</p>
+
+
+
+
+
 		<script type="text/javascript">
 			// Notes
 			//need to add input validation
@@ -35,13 +58,14 @@
 					return plan2StudentLoan_function(income)
 				} else if (loanType == "plan1") {
 					return plan1StudentLoan_function(income)
-				} else{
+				} else {
 					return 0
 				}
 			}
-			// This function takes the submitted value in the name:"input_Income_name" field, from the URL. It runs on load of the page
+			// This function takes the submitted value in the name:"input_Income_name" field, from the URL.
+			//	It runs whenever the input box is edited, or when a radio button is selected
 			function calculateTakeHomePay_function() {
-				var input_Income = document.getElementById('input_Income_id').value //this was used when it took 'onclick' of a button, instead of on submit of a form
+				var input_Income = document.getElementById('input_Income_id').value
 				// This takes the LoanType from the radio buttons in the form inputs
 				var studentLoanType = document.querySelector('input[name="studentLoan"]:checked').value;
 				//console.log("taxPayable:"+taxPayable_function(input_Income))
@@ -50,9 +74,17 @@
 				//console.log("personalAllowanceCap"+personalAllowanceCap_function(input_Income))
 				after_Tax_Annual = (input_Income - taxPayable_function(input_Income) - studentLoan_function(input_Income, studentLoanType) - totalNIConts_function(input_Income));
 				//this line divides the calculated annual Take Home Pay by 12 to get Monthly, rounds to 2dp, and puts the result into the page
-				var output = (1/100)*Math.floor((after_Tax_Annual/12)*100)
-				var rounded_Output = output.toFixed(2)
-				document.getElementById('outputid').innerHTML = "Monthly Take Home Pay: "+ rounded_Output
+				var yearlyOutput = (1/100)*Math.floor((after_Tax_Annual/12)*100);
+				var monthlyOutput = yearlyOutput/12;
+				var weeklyOutput = yearlyOutput/52;
+				// Rounding to 2dp isn't working perfectly, so toFixed() is a workaround on the output to force it to 2dp.
+				document.getElementById("yearly-box").innerHTML = "Yearly Take Home Pay: £" + yearlyOutput.toFixed(2);
+				document.getElementById("monthly-box").innerHTML = "Monthly Take Home Pay: £" + monthlyOutput.toFixed(2);
+				document.getElementById("weekly-box").innerHTML = "Weekly Take Home Pay: £" + weeklyOutput.toFixed(2);
+				//var roundedOutputsArray = [yearlyOutput.toFixed(2), monthlyOutput.toFixed(2), weeklyOutput.toFixed(2)];
+				//var radioboxIdArray = ["yearly-box", "monthly-box", "weekly-box"];
+				//document.getElementById('outputid').innerHTML = "Monthly Take Home Pay: "+ rounded_Outputs
+
 			}
 		</script>
 	</div>

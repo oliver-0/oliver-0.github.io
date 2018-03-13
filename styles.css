@@ -52,3 +52,36 @@ body {
 .mainBox p {
 	padding-left: 20px
 }
+
+
+label.radiobox-label {
+  text-align: center;
+  display: inline-block;
+  height: 50px;
+  width: 100px;
+  background: white;
+}
+
+.no-bullets {
+  list-style-type: none;
+}
+
+/* Styling labels immediately after checked inputs, with class 'outputbox-label' */
+:checked+label.radiobox-label {
+  color: red;
+	line-height: 4;
+	user-select: none;
+  border-top: 1px solid black;
+  border-left: 1px solid black;
+  border-right: 1px solid black;
+  border-bottom: 1px solid white;
+}
+:not(:checked)+label.radiobox-label {
+  color: teal;
+	line-height: 4;
+	user-select: none;
+  border-top: 1px solid white;
+  border-left: 1px solid white;
+  border-right: 1px solid white;
+  border-bottom: 1px solid black;
+}
