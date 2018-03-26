@@ -1,30 +1,23 @@
-//Try moving all of the scripts out of the HTML. You can use the below function to initialise some event listeners
-// try using a function to make all of the boxes hidden (use getElementsbyclassname? idk) and then use 'this' to get the clicked one to show up
-/*
-document.addEventListener('DOMContentLoaded', function() {
-    alert("Ready!");
-}, false);
-*/
-
+//On DOMContentLoaded, adds onclick functions to each of the radiobox buttons.
+// The onclick hides all three output boxes, then shows the corresponding one.
 document.addEventListener('DOMContentLoaded', function() {
   var buttons = document.getElementsByClassName('radiobox-button')
   for (var i = 0; i < buttons.length; i++) {
     buttons[i].onclick = function() {
-      ////hides all of the boxes (yearly, monthly, weekly)
+      //hides all of the boxes (yearly, monthly, weekly)
       var boxes = document.getElementsByClassName('radiobox')
       for (var j = 0; j < boxes.length; j++) {
         boxes[j].style.display = "none";
       }
-      ////shows the box for which the corresponding radio button was clicked
-      //document.getElementById('yearly-box').style.display = "none";
+      //shows the box for which the corresponding radio button was clicked
       document.getElementById(this.value).style.display = 'block';
-      console.log(this.value);
-
     }
   }
 });
 
 
+
+/* - - - - - - - - - - - */
 /**old functionality:
 
 function showyearly() {
