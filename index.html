@@ -31,17 +31,27 @@
 
 
 		<p>..</p>
-		    <input type="radio" name="radiobox" id="radioboxbutton-yearly" value="yearly" onclick="showyearly()" checked hidden>
-		    <label class="radiobox-label" for="radioboxbutton-yearly">Yearly</label>
-		    <input type="radio" name="radiobox" id="radioboxbutton-monthly" value="monthly" onclick="showmonthly()" hidden>
-		    <label class="radiobox-label" for="radioboxbutton-monthly">Monthly</label>
-		    <input type="radio" name="radiobox" id="radioboxbutton-weekly" value="weekly" onclick="showweekly()" hidden>
-		    <label class="radiobox-label" for="radioboxbutton-weekly">Weekly</label>
+		<!--
+		    <input type="radio" name="radiobox" id="radioboxbutton-yearly" value="yearly-box" onclick="showyearly()" checked hidden>
+		    	<label class="radiobox-label" for="radioboxbutton-yearly">Yearly</label>
+		    <input type="radio" name="radiobox" id="radioboxbutton-monthly" value="monthly-box" onclick="showmonthly()" hidden>
+		    	<label class="radiobox-label" for="radioboxbutton-monthly">Monthly</label>
+		    <input type="radio" name="radiobox" id="radioboxbutton-weekly" value="weekly-box" onclick="showweekly()" hidden>
+		    	<label class="radiobox-label" for="radioboxbutton-weekly">Weekly</label>
+			-->
+				<input type="radio" class = "radiobox-button" name="radiobox" id="radioboxbutton-yearly" value="yearly-box" checked hidden>
+		    	<label class="radiobox-label" for="radioboxbutton-yearly">Yearly</label>
+		    <input type="radio" class = "radiobox-button" name="radiobox" id="radioboxbutton-monthly" value="monthly-box" hidden>
+		    	<label class="radiobox-label" for="radioboxbutton-monthly">Monthly</label>
+		    <input type="radio" class = "radiobox-button" name="radiobox" id="radioboxbutton-weekly" value="weekly-box" hidden>
+		    	<label class="radiobox-label" for="radioboxbutton-weekly">Weekly</label>
+
+
 		<br>
 		<p>
-		  <div class="radiobox" id="yearly-box">Yearly Take Home Pay: £0.00 </div>
-		  <div class="radiobox" id="monthly-box" hidden>Monthly Take Home Pay: £0.00 </div>
-		  <div class="radiobox" id="weekly-box" hidden>Weekly Take Home Pay: £0.00 </div>
+		  <div class="radiobox" id="yearly-box">Yearly Take Home Pay: £0.00</div>
+		  <div class="radiobox" id="monthly-box" hidden>Monthly Take Home Pay: £0.00</div>
+		  <div class="radiobox" id="weekly-box" hidden>Weekly Take Home Pay: £0.00</div>
 		</p>
 
 
