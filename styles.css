@@ -68,20 +68,42 @@ label.radiobox-label {
 
 /* Styling labels immediately after checked inputs, with class 'outputbox-label' */
 :checked+label.radiobox-label {
+  box-sizing: border-box;
+  margin-right: -3px;
+  width: 130px;
   color: red;
 	line-height: 4;
 	user-select: none;
   border-top: 1px solid black;
   border-left: 1px solid black;
   border-right: 1px solid black;
-  border-bottom: 1px solid white;
+  /*border-bottom: 1px solid white;*/
 }
 :not(:checked)+label.radiobox-label {
+  box-sizing: border-box;
+  margin-right: -3px;
+  width: 130px;
   color: teal;
 	line-height: 4;
 	user-select: none;
-  border-top: 1px solid white;
+  /*border-top: 1px solid white;
   border-left: 1px solid white;
-  border-right: 1px solid white;
+  border-right: 1px solid white;*/
   border-bottom: 1px solid black;
+}
+
+.top-wrapper {
+	margin-left: 20px;
+  box-sizing: border-box;
+  width: 390px;
+}
+
+.bottom-wrapper {
+	margin-left: 20px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  text-align: center;
+  box-sizing: border-box;
+  width: 390px;
+  background-color: #CCCCCC;/*temp*/
 }
