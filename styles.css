@@ -1,3 +1,10 @@
+/*Clearfix*/
+.group:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
 html, body {
 	margin: 0 auto;
 	background: url("background2.png");
@@ -56,10 +63,11 @@ body {
 
 label.radiobox-label {
   text-align: center;
-  display: inline-block;
-  height: 50px;
-  width: 100px;
+	height: 100%;
+  /*height: 50px;
+  width: 100px;*/
   background: white;
+	display: table;
 }
 
 .no-bullets {
@@ -68,11 +76,13 @@ label.radiobox-label {
 
 /* Styling labels immediately after checked inputs, with class 'outputbox-label' */
 :checked+label.radiobox-label {
+	float: left;
   box-sizing: border-box;
-  margin-right: -3px;
-  width: 130px;
+  /*margin-right: -3px;*/
+  /*width: 130px;*/
+	width: 33.333%;
   color: red;
-	line-height: 4;
+	/*line-height: 4;*/ /*replaced with display: table; and */
 	user-select: none;
   border-top: 1px solid black;
   border-left: 1px solid black;
@@ -80,11 +90,13 @@ label.radiobox-label {
   /*border-bottom: 1px solid white;*/
 }
 :not(:checked)+label.radiobox-label {
+	float: left;
   box-sizing: border-box;
-  margin-right: -3px;
-  width: 130px;
+  /*margin-right: -3px;*/
+  /*width: 130px;*/
+	width: 33.333%;
   color: teal;
-	line-height: 4;
+	/*line-height: 4;*/
 	user-select: none;
   /*border-top: 1px solid white;
   border-left: 1px solid white;
@@ -95,8 +107,15 @@ label.radiobox-label {
 .top-wrapper {
 	margin-left: 20px;
   box-sizing: border-box;
+	height: 50px;
   width: 390px;
 }
+
+.centered {
+	display: table-cell;
+	vertical-align: middle;
+}
+
 
 .bottom-wrapper {
 	margin-left: 20px;
