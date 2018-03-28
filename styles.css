@@ -68,39 +68,29 @@ label.radiobox-label {
   width: 100px;*/
   background: white;
 	display: table;
+  float: left;
+  box-sizing: border-box;
+  width: 33.333%;
+  user-select: none;
 }
 
 .no-bullets {
   list-style-type: none;
 }
 
+.hidden {
+  display: none;
+}
+
 /* Styling labels immediately after checked inputs, with class 'outputbox-label' */
 :checked+label.radiobox-label {
-	float: left;
-  box-sizing: border-box;
-  /*margin-right: -3px;*/
-  /*width: 130px;*/
-	width: 33.333%;
   color: red;
-	/*line-height: 4;*/ /*replaced with display: table; and */
-	user-select: none;
   border-top: 1px solid black;
   border-left: 1px solid black;
   border-right: 1px solid black;
-  /*border-bottom: 1px solid white;*/
 }
 :not(:checked)+label.radiobox-label {
-	float: left;
-  box-sizing: border-box;
-  /*margin-right: -3px;*/
-  /*width: 130px;*/
-	width: 33.333%;
   color: teal;
-	/*line-height: 4;*/
-	user-select: none;
-  /*border-top: 1px solid white;
-  border-left: 1px solid white;
-  border-right: 1px solid white;*/
   border-bottom: 1px solid black;
 }
 
