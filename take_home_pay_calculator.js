@@ -18,11 +18,11 @@ var basic_Rate, higher_Rate, additional_Rate, basic_Rate_Cap, higher_Rate_Cap;
 basic_Rate = 0.20;
 higher_Rate = 0.40;
 additional_Rate = 0.45;
-basic_Rate_Cap = 45000;
+basic_Rate_Cap = 46500;
 higher_Rate_Cap = 150000;
 // Declarations for personalAllowanceCap():
 var personal_Allowance_Cap_Basic, personal_Allowance_Max_Income, personal_Allowance_Min_Income;
-personal_Allowance_Cap_Basic = 11500;
+personal_Allowance_Cap_Basic = 11850;
 personal_Allowance_Max_Income = 123000;
 personal_Allowance_Min_Income = 100000;
 //
@@ -63,9 +63,9 @@ function personalAllowanceCap(income) { //takes per annum Gross Income as an inp
 // planXStudentLoan_function - calculates the annual student loan plan (X = 1 or 2) repayment payable based on gross income
 // Declarations for plan1StudentLoan() and plan2StudentLoan():
 var plan_1_Student_Loan_Threshold, plan_1_Student_Loan_Rate, plan_2_Student_Loan_Threshold, plan_2_Student_Loan_Rate;
-plan_1_Student_Loan_Threshold = 17775;
+plan_1_Student_Loan_Threshold = 18330;
 plan_1_Student_Loan_Rate = 0.09;
-plan_2_Student_Loan_Threshold = 21000;
+plan_2_Student_Loan_Threshold = 25000;
 plan_2_Student_Loan_Rate = 0.09;
 //
 function plan1StudentLoan(income) { //takes per annum Gross Income as an input, returns annual Plan 1 Student Loan payable
@@ -90,9 +90,9 @@ function plan2StudentLoan(income) { //takes per annum Gross Income as an input, 
 // totalNIConts - works out the annual employee NI Contributions payable based on gross income
 // Declarations for totalNIConts():
 var basic_NI_Conts_Min_Income, higher_NI_Conts_Min_Income, basic_NI_Conts_Rate, higher_NI_Conts_Rate;
-basic_NI_Conts_Min_Income = 8164;
+basic_NI_Conts_Min_Income = 8424;
 basic_NI_Conts_Rate = 0.12;
-higher_NI_Conts_Min_Income = 45032;
+higher_NI_Conts_Min_Income = 46350;
 higher_NI_Conts_Rate = 0.02;
 //
 function totalNIConts(income){ //takes per annum Gross Income as an input, returns annual NI Contributions payable

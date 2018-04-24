@@ -68,8 +68,9 @@
 			var income = document.getElementById('inputIncome').value
 			// This takes the LoanType from the radio buttons in the form inputs
 			var studentLoanType = document.querySelector('input[name="studentLoan"]:checked').value;
+			//console.log("student loan type "+studentLoanType)
 			//console.log("taxPayable:"+taxPayable(income))
-			//console.log("studentLoan:"+studentLoan(income))
+			//console.log("studentLoan:"+studentLoan(income, studentLoanType))
 			//console.log("totalNIConts:"+totalNIConts(income))
 			//console.log("personalAllowanceCap"+personalAllowanceCap(income))
 			after_Tax_Annual = (income - taxPayable(income) - studentLoan(income, studentLoanType) - totalNIConts(income));
