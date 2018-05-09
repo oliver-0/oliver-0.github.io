@@ -20,25 +20,39 @@ higher_Rate = 0.40;
 additional_Rate = 0.45;
 basic_Rate_Cap = 46500;
 higher_Rate_Cap = 150000;
+// Declarations for the Chart
+var chartBasic, chartHigher, chartAdditional;
 // Declarations for personalAllowanceCap():
 var personal_Allowance_Cap_Basic, personal_Allowance_Max_Income, personal_Allowance_Min_Income;
 personal_Allowance_Cap_Basic = 11850;
-personal_Allowance_Max_Income = 123000;
+personal_Allowance_Max_Income = 123700;
 personal_Allowance_Min_Income = 100000;
 //
 function taxPayable(income) {
 	if (income >= higher_Rate_Cap) { //if income is over 150k
+		chartAdditional = (income - higher_Rate_Cap) * additional_Rate;
+		chartHigher = (higher_Rate_Cap - basic_Rate_Cap) * higher_Rate;
+		chartBasic = (basic_Rate_Cap - personalAllowanceCap(income)) * basic_Rate;
 		return ((income - higher_Rate_Cap) * additional_Rate) + ((higher_Rate_Cap - basic_Rate_Cap) * higher_Rate) + ((basic_Rate_Cap - personalAllowanceCap(income)) * basic_Rate);
-	} else if(income >= basic_Rate_Cap) { //if income is over 45k
+	} else if(income >= basic_Rate_Cap) { //if income is over 46.5k
+		chartAdditional = 0;
+		chartHigher = (income - basic_Rate_Cap + (personal_Allowance_Cap_Basic - personalAllowanceCap(income))) * higher_Rate;
+		chartBasic = (basic_Rate_Cap - personal_Allowance_Cap_Basic) * basic_Rate;
 		return ((income - basic_Rate_Cap + (personal_Allowance_Cap_Basic - personalAllowanceCap(income))) * higher_Rate) + ((basic_Rate_Cap - personal_Allowance_Cap_Basic) * basic_Rate);
 	} else if(income >= personalAllowanceCap(income)) {
+		chartAdditional = 0;
+		chartHigher = 0;
+		chartBasic = (income - personalAllowanceCap(income)) * basic_Rate;
 		return (income - personalAllowanceCap(income)) * basic_Rate;
 	} else {
+		chartAdditional = 0;
+		chartHigher = 0;
+		chartBasic = 0;
 		return 0;
 	}
 }
 // personalAllowanceCap - calculates the annual Personal Allowance based on gross income
-// Functions it depends on: roundDownToNearest2Pound, and taxableIncome
+// Functions it depends on: roundDownToNearest2Pound, and taxableIncome (it doesn't depend on taxableIncome anymore, but keeping it here)
 function roundDownToNearest2Pound(income){ //rounds a number down to the nearest multiple £2.00
 	return 2 * Math.floor(income/2);
 }
@@ -60,7 +74,7 @@ function personalAllowanceCap(income) { //takes per annum Gross Income as an inp
 
 // - - - //
 
-// planXStudentLoan_function - calculates the annual student loan plan (X = 1 or 2) repayment payable based on gross income
+// planXStudentLoan - calculates the annual student loan plan repayment payable based on gross income
 // Declarations for plan1StudentLoan() and plan2StudentLoan():
 var plan_1_Student_Loan_Threshold, plan_1_Student_Loan_Rate, plan_2_Student_Loan_Threshold, plan_2_Student_Loan_Rate;
 plan_1_Student_Loan_Threshold = 18330;
@@ -82,7 +96,16 @@ function plan2StudentLoan(income) { //takes per annum Gross Income as an input, 
 		return 0;
 	}
 }
-
+// This function selects the right Student Loan Repayment Calculation Function and calculates the monthly repayment based on the Income and Loan Type variables
+function studentLoan(income, loanType) {
+	if (loanType == "plan2") {
+		return plan2StudentLoan(income);
+	} else if (loanType == "plan1") {
+		return plan1StudentLoan(income);
+	} else {
+		return 0;
+	}
+}
 
 
 // - - - //

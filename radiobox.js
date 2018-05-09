@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', function addRadioboxOnclicks() {
 
 function showBox() {
   //hides all of the radioboxes (yearly, monthly, weekly)
-  var boxes = document.getElementsByClassName('radiobox')
+  var boxes = document.getElementsByClassName('radiobox-content')
   for (var j = 0; j < boxes.length; j++) {
     boxes[j].style.display = "none";
   }

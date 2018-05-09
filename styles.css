@@ -6,9 +6,25 @@
 }
 
 html, body {
-	margin: 0 auto;
-	background: url("background2.png");
+	/*background: url("background2.png");*/
 	padding: 0;
+}
+
+html {
+  margin: 0;
+  min-height: 100%;
+  height: 100%;
+}
+
+body {
+  margin: auto;
+  height: 100%;
+  min-height: 100%;
+  margin-top: 0;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 12px;
+  background-color: rgba(0,0,0,0.02);
+  padding: 0;
 }
 
 header {
@@ -17,61 +33,38 @@ header {
 	display: block;
 	color: #4a5154;
 	border-bottom: 2px solid #99baef;
-	height: 71px;
-	width: 1225px;
+
+	width: 100%;
 	background-color: #ffffff;
 	padding-top: 0;
 }
 
-body {
-	margin-top: 0;
-	font-family: "Open Sans";
-    font-size: 12px;
-    color: #333;
-	padding: 0;
+footer {
+  background-color: #eeeeee;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
 }
 
-.mainBox {
+.mainContent {
 	margin: 0 auto;
 	display:block;
 	background-color: #ffffff;
-	height: 600px;
-	width: 1225px;
+	width: 60%;
 	padding: 0;
 }
 
 .mainHeaderText {
 	padding-left: 20px;
-	padding-top: 18px;
-	padding-bottom: 18px;
+	padding-top: 15px;
+	padding-bottom: 15px;
 	margin: 0 auto;
 	text-align: left;
+  width: 60%;
 }
 
 .nomargin {
 	margin: 0 auto;
-}
-
-.mainBox p:first-of-type {
-	padding-top: 40px;
-}
-
-.mainBox p {
-	padding-left: 20px
-}
-
-
-label.radiobox-label {
-  text-align: center;
-	height: 100%;
-  /*height: 50px;
-  width: 100px;*/
-  background: white;
-	display: table;
-  float: left;
-  box-sizing: border-box;
-  width: 33.333%;
-  user-select: none;
 }
 
 .no-bullets {
@@ -82,37 +75,131 @@ label.radiobox-label {
   display: none;
 }
 
-/* Styling labels immediately after checked inputs, with class 'outputbox-label' */
-:checked+label.radiobox-label {
-  color: red;
-  border-top: 1px solid black;
-  border-left: 1px solid black;
-  border-right: 1px solid black;
-}
-:not(:checked)+label.radiobox-label {
-  color: teal;
-  border-bottom: 1px solid black;
-}
-
-.top-wrapper {
-	margin-left: 20px;
-  box-sizing: border-box;
-	height: 50px;
-  width: 390px;
-}
-
 .centered {
 	display: table-cell;
 	vertical-align: middle;
 }
 
+/* Styling Student Loan radio buttons */
+
+.studentLoanButtons {
+  display: none;
+}
+
+.studentLoanWrapper {
+  width: 200px;
+  background-color: white;
+  border: 2px solid #759ad6;
+  border-radius: 7px 7px 7px 7px;
+}
+
+.studentLoanLabels {
+  font-weight: bold;
+  display: block;
+  box-sizing: border-box;
+  text-align: center;
+  user-select: none;
+  background-color: white;
+  padding: 2%;
+  border-bottom: 3px solid #759ad6;
+}
+
+.studentLoanLabels:nth-of-type(1) {
+border-radius: 5px 5px 0 0;
+}
+
+.studentLoanLabels:nth-of-type(2) {
+}
+
+.studentLoanLabels:nth-of-type(3) {
+border-radius: 0 0 5px 5px;
+border-bottom: none;
+}
+
+:checked + .studentLoanLabels {
+  box-shadow: inset 0px 0px 5px rgba(0,0,0,0.5);
+}
+/* //end of Student Loan radio buttons */
+
+
+
+/* Styling the tabbed radio button box */
+
+label.radiobox-label {
+  /* display: block; - leaves a small gap to the right - doesn't seem to like 33.33% width, but flex seems to handle it fine?*/
+  display: flex;
+  justify-content: center;
+	height: 100%;
+  font-weight: bold;
+  background: white;
+  float: left;
+  width: 33.3333333333%;
+  padding: 6px 0 6px 0;
+  box-sizing: border-box;
+  user-select: none;
+
+}
+
+label.radiobox-label:nth-of-type(2) {
+  border-left: 1px solid rgba(0,0,0,0.3);
+  border-right: 1px solid rgba(0,0,0,0.3);
+}
+
+:checked+label.radiobox-label {
+  /*color: #99baef;*/
+  /*border-top: 1px solid black;
+  border-left: 1px solid black;
+  border-right: 1px solid black;*/
+  border-top: 3px solid #99baef;
+  margin-top: -1px;
+  border-bottom: none;
+}
+
+:not(:checked)+label.radiobox-label {
+  /*color: teal;*/
+  background-color: #eeeeee;
+  border-top: 2px solid #eeeeee;
+  border-bottom: 1px solid rgba(0,0,0,0.3);
+}
+
+.top-wrapper {
+	/*margin-left: 20px;*/
+  box-sizing: border-box;
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2);
+  border-top: 1px solid rgba(0,0,0,0.3);
+  border-left: 1px solid rgba(0,0,0,0.3);
+  border-right: 1px solid rgba(0,0,0,0.3);
+  z-index: 2;
+}
+
+/*adding a line before bottom wrapper*//*
+.bottom-wrapper::before {
+  position: relative;
+  bottom: 50px;
+  content: "";
+  display: block;
+  border-bottom: 1px solid black;
+  width: 100%;
+}*/
+/*//adding a line*/
 
 .bottom-wrapper {
-	margin-left: 20px;
-  padding-top: 20px;
-  padding-bottom: 20px;
+	/*margin-left: 20px;*/
+  margin-top: -2px;
+  padding-top: 50px;
+  padding-bottom: 50px;
   text-align: center;
   box-sizing: border-box;
-  width: 390px;
-  background-color: #CCCCCC;/*temp*/
+  background-color: #ffffff;/*temp*/
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(0,0,0,0.3);
+  z-index: 3;
+}
+
+.radiobox {
+  width: 280px;
+  margin: 30px;
+  /*margin-top: 20px;
+  padding: 10px;
+  background-color: #759ad6;*/
 }
