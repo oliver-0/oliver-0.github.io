@@ -40,6 +40,7 @@ header {
 }
 
 footer {
+  display: none;
   background-color: #eeeeee;
   position: absolute;
   bottom: 0;
