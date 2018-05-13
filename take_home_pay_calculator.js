@@ -2,13 +2,22 @@
 //  to make the output update in real time whenever inputs are changed
 document.addEventListener('DOMContentLoaded', function addTakeHomePayEventHandlers() {
 	//This triggers on changing the value of the Income input field
-	document.getElementById('inputIncome').oninput = calculateTakeHomePay;
+	document.getElementById('inputIncome').oninput = calculateTakeHomePay; //note: calculateTakeHomePay also calls drawChart();
 	//These trigger when a Student Loan Type radio button is pressed
-	var loanButtons = document.getElementsByClassName('studentLoanButtons')
-	for (var i = 0; i < loanButtons.length; i++) {
-		loanButtons[i].onclick = calculateTakeHomePay;
-	}
+	document.getElementById('studentLoan').onchange = calculateTakeHomePay;
 });
+
+
+// Print a number with comma thousand separators using javascript:
+const numberWithCommas = (x) => {
+  var parts = x.toString().split(".");
+  parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+		//explanation of the above regex:
+			//two lookaheads:
+				//one positive to check for three sequential following digits (0-9) [that's ?=(\d{3})]
+				//one negative to check that each multiple of three digits does not have a digit after it (so it only puts commas before 3 digits, not 3,4,5,+ digits) [that's ?!\d]
+  return parts.join(".");
+}
 
 
 // taxPayable - calculates the total tax payable based on gross income
@@ -29,25 +38,22 @@ personal_Allowance_Max_Income = 123700;
 personal_Allowance_Min_Income = 100000;
 //
 function taxPayable(income) {
+	chartAdditional = 0;
+	chartHigher = 0;
+	chartBasic = 0;
 	if (income >= higher_Rate_Cap) { //if income is over 150k
 		chartAdditional = (income - higher_Rate_Cap) * additional_Rate;
 		chartHigher = (higher_Rate_Cap - basic_Rate_Cap) * higher_Rate;
 		chartBasic = (basic_Rate_Cap - personalAllowanceCap(income)) * basic_Rate;
 		return ((income - higher_Rate_Cap) * additional_Rate) + ((higher_Rate_Cap - basic_Rate_Cap) * higher_Rate) + ((basic_Rate_Cap - personalAllowanceCap(income)) * basic_Rate);
 	} else if(income >= basic_Rate_Cap) { //if income is over 46.5k
-		chartAdditional = 0;
 		chartHigher = (income - basic_Rate_Cap + (personal_Allowance_Cap_Basic - personalAllowanceCap(income))) * higher_Rate;
 		chartBasic = (basic_Rate_Cap - personal_Allowance_Cap_Basic) * basic_Rate;
 		return ((income - basic_Rate_Cap + (personal_Allowance_Cap_Basic - personalAllowanceCap(income))) * higher_Rate) + ((basic_Rate_Cap - personal_Allowance_Cap_Basic) * basic_Rate);
 	} else if(income >= personalAllowanceCap(income)) {
-		chartAdditional = 0;
-		chartHigher = 0;
 		chartBasic = (income - personalAllowanceCap(income)) * basic_Rate;
 		return (income - personalAllowanceCap(income)) * basic_Rate;
 	} else {
-		chartAdditional = 0;
-		chartHigher = 0;
-		chartBasic = 0;
 		return 0;
 	}
 }

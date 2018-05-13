@@ -6,30 +6,49 @@
 	<script type="text/javascript" src="take_home_pay_calculator.js"></script>
 	<script type="text/javascript" src="radiobox.js"></script>
 </head>
+<!--To do:
+input validation
+input 'sanitation'? xss?
+add inputs:
+	Scottish tax
+	Pension / other salary sacrifice benefits? (drop down box for £/mo, £/yr, %)
+		tax free benefits? not salary sacrifice but otherwise tax free (find examples of this)
+	over SPA? (and other NI exemptions? check if there are any)
+	blind personall allowance?
+add preamble / wording
+make footer scroll off the page
+-->
 <body>
 	<header>
 		<h1 class="mainHeaderText">Take-Home Pay Calculator</h1>
 	</header>
 	<article class="mainContent">
-
-		<p class="nomargin">Enter Gross Income: <input id="inputIncome" name="inputIncome" type="number"></p>
-			<section class="studentLoanWrapper">
-				<input class="studentLoanButtons" type="radio" id="studentLoanPlan0" name="studentLoan" value="plan0" checked>
-					<label class="studentLoanLabels" for="studentLoanPlan0">No Student Loan</label>
-				<input class="studentLoanButtons" type="radio" id="studentLoanPlan1" name="studentLoan" value="plan1">
-					<label class="studentLoanLabels" for="studentLoanPlan1">Student Loan Plan 1</label>
-				<input class="studentLoanButtons" type="radio" id="studentLoanPlan2" name="studentLoan" value="plan2">
-					<label class="studentLoanLabels" for="studentLoanPlan2">Student Loan Plan 2</label>
-			</section> <!-- studentLoanWrapper end-->
-
+		<section class="inputs">
+			<table>
+				<tr>
+					<td>Enter Salary:</td>
+					<td><input id="inputIncome" name="inputIncome" type="number" autofocus></td>
+				</tr>
+				<tr>
+					<td>Student Loan type:</td>
+					<td>
+						<select id="studentLoan" name="studentLoan">
+							<option class="studentLoanOption" value="plan0">No Student Loan</option>
+							<option class="studentLoanOption" value="plan1">Student Loan Plan 1</option>
+							<option class="studentLoanOption" value="plan2">Student Loan Plan 2</option>
+						</select>
+					</td>
+				</tr>
+			</table>
+		</section> <!--inputs section end-->
 </br>
 		<section class="radiobox">
 			<div class="top-wrapper group">
-				<input type="radio" class = "radiobox-button" name="radiobox" id="radioboxbutton-yearly" value="yearly-box" hidden>
+				<input type="radio" class="radiobox-button hidden" name="radiobox" id="radioboxbutton-yearly" value="yearly-box">
 					<label class="radiobox-label" for="radioboxbutton-yearly">Yearly</label>
-				<input type="radio" class = "radiobox-button" name="radiobox" id="radioboxbutton-monthly" value="monthly-box" checked hidden>
+				<input type="radio" class="radiobox-button hidden" name="radiobox" id="radioboxbutton-monthly" value="monthly-box" checked>
 					<label class="radiobox-label" for="radioboxbutton-monthly">Monthly</label>
-				<input type="radio" class = "radiobox-button" name="radiobox" id="radioboxbutton-weekly" value="weekly-box" hidden>
+				<input type="radio" class="radiobox-button hidden" name="radiobox" id="radioboxbutton-weekly" value="weekly-box">
 					<label class="radiobox-label" for="radioboxbutton-weekly">Weekly</label>
 			</div>
 			<div class="bottom-wrapper">
@@ -37,10 +56,10 @@
 				<div class="radiobox-content" id="monthly-box">Monthly Take Home Pay: £0.00</div>
 				<div class="radiobox-content hidden" id="weekly-box">Weekly Take Home Pay: £0.00</div>
 			</div>
-		</section>
+		</section> <!--radiobox section end-->
 
 
-	<div id="piechart" style="width: 750px; height: 300px;"></div>
+	<div id="pieChart"></div>
 	</article> <!--mainContent end-->
 
 	<footer>
@@ -55,7 +74,7 @@
 		function calculateTakeHomePay() {
 			var income = document.getElementById('inputIncome').value;
 			// This takes the LoanType from the radio buttons in the form inputs
-			var studentLoanType = document.querySelector('input[name="studentLoan"]:checked').value;
+			var studentLoanType = document.querySelector('select[id="studentLoan"]').value;
 			//console.log("student loan type "+studentLoanType)
 			//console.log("taxPayable:"+taxPayable(income))
 			//console.log("studentLoan:"+studentLoan(income, studentLoanType))
@@ -67,56 +86,13 @@
 			var monthlyOutput = yearlyOutput/12;
 			var weeklyOutput = yearlyOutput/52;
 			//toFixed() turns a number into a string with forced 2dp.
-			document.getElementById("yearly-box").innerHTML = "Yearly Take Home Pay: £" + yearlyOutput.toFixed(2);
-			document.getElementById("monthly-box").innerHTML = "Monthly Take Home Pay: £" + monthlyOutput.toFixed(2);
-			document.getElementById("weekly-box").innerHTML = "Weekly Take Home Pay: £" + weeklyOutput.toFixed(2);
+			document.getElementById("yearly-box").innerHTML = "Yearly Take Home Pay: £" + numberWithCommas(yearlyOutput.toFixed(2));
+			document.getElementById("monthly-box").innerHTML = "Monthly Take Home Pay: £" + numberWithCommas(monthlyOutput.toFixed(2));
+			document.getElementById("weekly-box").innerHTML = "Weekly Take Home Pay: £" + numberWithCommas(weeklyOutput.toFixed(2));
 			drawChart();
 		}
 	</script>
-
 	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-	<script type="text/javascript">
-		google.charts.load('current', {'packages':['corechart']});
-		google.charts.setOnLoadCallback(drawChart);
-
-		function drawChart() {
-			var income = document.getElementById('inputIncome').value;
-			var studentLoanType = document.querySelector('input[name="studentLoan"]:checked').value;
-			var after_Tax_Annual = (income - taxPayable(income) - studentLoan(income, studentLoanType) - totalNIConts(income));
-			var takeHome = (1/100)*Math.floor((after_Tax_Annual)*100);
-			var NIConts = totalNIConts(income);
-			var studentLoan1, studentLoan2;
-			if (studentLoanType == "plan2") {
-				studentLoan1 = 0;
-				studentLoan2 = studentLoan(income, studentLoanType);
-			} else if (studentLoanType == "plan1") {
-				studentLoan1 = studentLoan(income, studentLoanType);
-				studentLoan2 = 0;
-			} else {
-				studentLoan1 = 0;
-				studentLoan2 = 0;
-			}
-			console.log(studentLoan1)
-			console.log("")
-			var data = google.visualization.arrayToDataTable([
-				['Portion', '£'],
-				['Basic Rate Tax (20%)', chartBasic],
-				['Higher Rate Tax (40%)', chartHigher],
-				['Additional Rate Tax (45%)', chartAdditional],
-				['Student Loan (Plan 1)', studentLoan1],
-				['Student Loan (Plan 2)', studentLoan2],
-				['NI Contributions', NIConts],
-				['Take-Home Pay', takeHome]
-			]);
-
-			var options = {
-				title: 'Breakdown'
-			};
-
-			var chart = new google.visualization.PieChart(document.getElementById('piechart'));
-
-			chart.draw(data, options);
-		}
-	</script>
+	<script type="text/javascript" src="chart.js"></script>
 </body>
 </html>

@@ -33,26 +33,26 @@ header {
 	display: block;
 	color: #4a5154;
 	border-bottom: 2px solid #99baef;
-
 	width: 100%;
 	background-color: #ffffff;
 	padding-top: 0;
 }
 
 footer {
-  display: none;
   background-color: #eeeeee;
-  position: absolute;
+  position: fixed;
   bottom: 0;
   width: 100%;
 }
 
 .mainContent {
 	margin: 0 auto;
+  margin-top: 15px;
 	display:block;
 	background-color: #ffffff;
-	width: 60%;
-	padding: 0;
+	width: 800px;
+	padding: 20px;
+  border: 1px solid rgba(0,0,0,0.08);
 }
 
 .mainHeaderText {
@@ -64,68 +64,11 @@ footer {
   width: 60%;
 }
 
-.nomargin {
-	margin: 0 auto;
-}
-
-.no-bullets {
-  list-style-type: none;
-}
-
 .hidden {
   display: none;
 }
 
-.centered {
-	display: table-cell;
-	vertical-align: middle;
-}
-
-/* Styling Student Loan radio buttons */
-
-.studentLoanButtons {
-  display: none;
-}
-
-.studentLoanWrapper {
-  width: 200px;
-  background-color: white;
-  border: 2px solid #759ad6;
-  border-radius: 7px 7px 7px 7px;
-}
-
-.studentLoanLabels {
-  font-weight: bold;
-  display: block;
-  box-sizing: border-box;
-  text-align: center;
-  user-select: none;
-  background-color: white;
-  padding: 2%;
-  border-bottom: 3px solid #759ad6;
-}
-
-.studentLoanLabels:nth-of-type(1) {
-border-radius: 5px 5px 0 0;
-}
-
-.studentLoanLabels:nth-of-type(2) {
-}
-
-.studentLoanLabels:nth-of-type(3) {
-border-radius: 0 0 5px 5px;
-border-bottom: none;
-}
-
-:checked + .studentLoanLabels {
-  box-shadow: inset 0px 0px 5px rgba(0,0,0,0.5);
-}
-/* //end of Student Loan radio buttons */
-
-
-
 /* Styling the tabbed radio button box */
-
 label.radiobox-label {
   /* display: block; - leaves a small gap to the right - doesn't seem to like 33.33% width, but flex seems to handle it fine?*/
   display: flex;
@@ -142,31 +85,34 @@ label.radiobox-label {
 }
 
 label.radiobox-label:nth-of-type(2) {
-  border-left: 1px solid rgba(0,0,0,0.3);
-  border-right: 1px solid rgba(0,0,0,0.3);
+  border-left: 1px solid #b2b2b2; /* rbga(0,0,0,0.3), rgb(178,178,178) */
+  border-right: 1px solid #b2b2b2;
 }
 
 :checked+label.radiobox-label {
-  /*color: #99baef;*/
-  /*border-top: 1px solid black;
-  border-left: 1px solid black;
-  border-right: 1px solid black;*/
   border-top: 3px solid #99baef;
   margin-top: -1px;
+  padding-top: 4px;
+  padding-bottom: 7px;
   border-bottom: none;
 }
 
 :not(:checked)+label.radiobox-label {
-  /*color: teal;*/
   background-color: #eeeeee;
-  border-top: 2px solid #eeeeee;
-  border-bottom: 1px solid rgba(0,0,0,0.3);
+  border-bottom: 1px solid #b2b2b2;
+}
+
+:not(:checked)+label.radiobox-label:hover {
+  background-color: #dedede;
+}
+
+:checked+label.radiobox-label:hover {
+  background-color: #f8f8f8;
 }
 
 .top-wrapper {
-	/*margin-left: 20px;*/
   box-sizing: border-box;
-  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2);
+  box-shadow: 3px 3px 5px #cccccc; /* rbga(0,0,0,0.2), rgb(204,204,204) */
   border-top: 1px solid rgba(0,0,0,0.3);
   border-left: 1px solid rgba(0,0,0,0.3);
   border-right: 1px solid rgba(0,0,0,0.3);
@@ -185,14 +131,13 @@ label.radiobox-label:nth-of-type(2) {
 /*//adding a line*/
 
 .bottom-wrapper {
-	/*margin-left: 20px;*/
   margin-top: -2px;
   padding-top: 50px;
   padding-bottom: 50px;
   text-align: center;
   box-sizing: border-box;
-  background-color: #ffffff;/*temp*/
-  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2);
+  background-color: #ffffff;
+  box-shadow: 3px 3px 5px #cccccc;
   border: 1px solid rgba(0,0,0,0.3);
   z-index: 3;
 }
@@ -200,7 +145,12 @@ label.radiobox-label:nth-of-type(2) {
 .radiobox {
   width: 280px;
   margin: 30px;
-  /*margin-top: 20px;
-  padding: 10px;
-  background-color: #759ad6;*/
+
+}
+/* end of Styling the tabbed radio button box */
+
+#pieChart {
+  margin: 0 auto;
+  height: 300px;
+  width: 600px;
 }
