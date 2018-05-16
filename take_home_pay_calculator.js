@@ -1,12 +1,26 @@
 // On DOMContentLoaded, adds event handlers to various inputs,
 //  to make the output update in real time whenever inputs are changed
 document.addEventListener('DOMContentLoaded', function addTakeHomePayEventHandlers() {
-	//This triggers on changing the value of the Income input field
 	document.getElementById('inputIncome').oninput = calculateTakeHomePay; //note: calculateTakeHomePay also calls drawChart();
-	//These trigger when a Student Loan Type radio button is pressed
 	document.getElementById('studentLoan').onchange = calculateTakeHomePay;
 });
 
+document.addEventListener('DOMContentLoaded', function addAdvancedSectionOnclick() {
+	document.getElementById('advancedButtonLabel').onclick = showHideAdvancedSection;
+});
+
+function showHideAdvancedSection() {
+	var advancedContent = document.getElementsByClassName('advancedContent');
+	if (document.getElementById('advancedCheckbox').checked == false) {
+		for (var i = 0; i < advancedContent.length; i++) {
+			advancedContent[i].style.display = "block";
+		}
+	} else {
+		for (var i = 0; i < advancedContent.length; i++) {
+			advancedContent[i].style.display = "none";
+		}
+	}
+}
 
 // Print a number with comma thousand separators using javascript:
 const numberWithCommas = (x) => {
@@ -15,7 +29,7 @@ const numberWithCommas = (x) => {
 		//explanation of the above regex:
 			//two lookaheads:
 				//one positive to check for three sequential following digits (0-9) [that's ?=(\d{3})]
-				//one negative to check that each multiple of three digits does not have a digit after it (so it only puts commas before 3 digits, not 3,4,5,+ digits) [that's ?!\d]
+				//one negative to check that each multiple of three digits does not have a digit after it (so it only puts commas before 3 digits, not 4,5,6,+ digits) [that's ?!\d]
   return parts.join(".");
 }
 

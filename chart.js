@@ -53,5 +53,12 @@ function drawChart() {
   };
 
   var chart = new google.visualization.PieChart(document.getElementById('pieChart'));
-  chart.draw(data, options);
+  //chart.draw(data, options);
+
+  if (chartBasic + chartHigher + chartAdditional + studentLoan1 + studentLoan2 + NIConts + takeHome == 0) {
+    document.getElementById("pieChart").innerHTML="Enter a Salary to get a Breakdown";
+  } else {
+    document.getElementById("pieChart").innerHTML="";
+    chart.draw(data, options);
+  }
 }

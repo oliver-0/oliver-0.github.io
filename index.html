@@ -7,6 +7,7 @@
 	<script type="text/javascript" src="radiobox.js"></script>
 </head>
 <!--To do:
+add preamble / wording
 input validation
 input 'sanitation'? xss?
 add inputs:
@@ -14,8 +15,7 @@ add inputs:
 	Pension / other salary sacrifice benefits? (drop down box for £/mo, £/yr, %)
 		tax free benefits? not salary sacrifice but otherwise tax free (find examples of this)
 	over SPA? (and other NI exemptions? check if there are any)
-	blind personall allowance?
-add preamble / wording
+	blind person's personal allowance?
 make footer scroll off the page
 -->
 <body>
@@ -23,25 +23,49 @@ make footer scroll off the page
 		<h1 class="mainHeaderText">Take-Home Pay Calculator</h1>
 	</header>
 	<article class="mainContent">
+		<section class="introduction">
+			<h4>Take-Home Pay Calculator</h4>
+			<p>This Take-Home Pay Calculator will calculate how much of your salary you get to
+				take home after Tax, National Insurance Contributions, Student Loans and more.</p>
+		</section> <!--introduction section end-->
+
+
+
+
+
 		<section class="inputs">
-			<table>
-				<tr>
-					<td>Enter Salary:</td>
-					<td><input id="inputIncome" name="inputIncome" type="number" autofocus></td>
-				</tr>
-				<tr>
-					<td>Student Loan type:</td>
-					<td>
-						<select id="studentLoan" name="studentLoan">
-							<option class="studentLoanOption" value="plan0">No Student Loan</option>
-							<option class="studentLoanOption" value="plan1">Student Loan Plan 1</option>
-							<option class="studentLoanOption" value="plan2">Student Loan Plan 2</option>
-						</select>
-					</td>
-				</tr>
-			</table>
+			<div>Enter Salary:</div>
+			<input id="inputIncome" name="inputIncome" type="number" autofocus>
+
+			<div>Student Loan type:</div>
+			<select id="studentLoan" name="studentLoan">
+				<option class="studentLoanOption" value="plan0">No Student Loan</option>
+				<option class="studentLoanOption" value="plan1">Student Loan Plan 1</option>
+				<option class="studentLoanOption" value="plan2">Student Loan Plan 2</option>
+			</select>
+
+			<div>Scottish Tax:</div>
+			<div>Y/N</div>
+
+			<fieldset class="advancedFieldset">
+				<legend><input type="checkbox" value="1" class="hidden" id="advancedCheckbox"><label id="advancedButtonLabel" class="advancedButtonLabel" for="advancedCheckbox">Advanced <span class="triangle-right">▶</span></label></legend>
+
+				<div class="advancedContent">Pension:</div>
+				<input type="number" class="advancedContent">
+
+				<div class="advancedContent">NI Exemption? (e.g. over SPA)</div>
+				<div class="advancedContent">Y/N</div>
+
+				<div class="advancedContent">Blind person?</div>
+				<div class="advancedContent">Y/N</div>
+			</fieldset>
+
+
+
 		</section> <!--inputs section end-->
+
 </br>
+
 		<section class="radiobox">
 			<div class="top-wrapper group">
 				<input type="radio" class="radiobox-button hidden" name="radiobox" id="radioboxbutton-yearly" value="yearly-box">
@@ -59,12 +83,14 @@ make footer scroll off the page
 		</section> <!--radiobox section end-->
 
 
-	<div id="pieChart"></div>
+	<div id="pieChart">breakdown</div><div id="pieChart2"></div>
 	</article> <!--mainContent end-->
 
+<div class="footer-parent">
 	<footer>
 	  <p>Footer content</p>
 	</footer>
+</div>
 	<script type="text/javascript">
 		// Notes
 		//  need to add input validation
