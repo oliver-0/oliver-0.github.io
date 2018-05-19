@@ -2,22 +2,10 @@
 <html>
 <head>
 	<title>Take-Home Pay Calculator</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no" />
+	<!--<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no" />-->
+	<meta name="viewport" content="width=device-width" />
 	<link rel="stylesheet" href="styles.css">
 </head>
-<!--To do:
-change the advanced box to this accordion style: https://www.w3schools.com/howto/howto_js_accordion.asp
-add preamble / wording
-input validation
-input 'sanitation'? xss?
-add inputs:
-	Scottish tax
-	Pension / other salary sacrifice benefits? (drop down box for £/mo, £/yr, %)
-		tax free benefits? not salary sacrifice but otherwise tax free (find examples of this)
-	over SPA? (and other NI exemptions? check if there are any)
-	blind person's personal allowance?
-make footer scroll off the page
--->
 <body>
 	<header>
 		<h1 class="mainHeaderText">Take-Home Pay Calculator</h1>
@@ -41,53 +29,24 @@ make footer scroll off the page
 			<div class="inline">Y/N</div>
 		</section> <!--inputs section end-->
 
-
-<!--
-			<fieldset class="advancedFieldset">
-				<legend><input type="checkbox" value="1" class="hidden" id="advancedCheckbox"><label id="advancedButtonLabel" class="advancedButtonLabel" for="advancedCheckbox">Advanced <span class="triangle-right">▶</span></label></legend>
-
-				<div class="advancedContent">Pension:</div>
-				<input type="number" class="advancedContent">
-
-				<div class="advancedContent">NI Exemption? (e.g. over SPA)</div>
-				<div class="advancedContent">Y/N</div>
-
-				<div class="advancedContent">Blind person?</div>
-				<div class="advancedContent">Y/N</div>
-			</fieldset>
-
-			<fieldset class="advancedFieldset">
-				<legend><input type="checkbox" value="1" class="hidden" id="advancedCheckbox"><label id="advancedButtonLabel" class="advancedButtonLabel" for="advancedCheckbox">Advanced <span class="triangle-right">▶</span></label></legend>
-
-				<div class="advancedContent">Pension:</div>
-				<input type="number" class="advancedContent">
-
-				<div class="advancedContent">NI Exemption? (e.g. over SPA)</div>
-				<div class="advancedContent">Y/N</div>
-
-				<div class="advancedContent">Blind person?</div>
-				<div class="advancedContent">Y/N</div>
-			</fieldset> -->
 		<section class="advanced-section">
-			<h4 id="advancedHeader" class="advanced-header">Advanced</h4>
+			<h4 id="advancedHeader" class="advanced-header">More options</h4>
 			<div id="advancedContent" class="advanced-content">
-				<div>Student Loan type:</div>
+				<div class="inline">Student Loan type:</div>
 				<select id="studentLoan" name="studentLoan">
 					<option class="studentLoanOption" value="plan0">No Student Loan</option>
 					<option class="studentLoanOption" value="plan1">Student Loan Plan 1</option>
 					<option class="studentLoanOption" value="plan2">Student Loan Plan 2</option>
 				</select>
 
-				<div>NI Exemption? (e.g. over SPA)</div>
-				<div>Y/N</div>
+				<div class="inline">NI Exemption? (e.g. over SPA)</div>
+				<div class="inline">Y/N</div>
 
 				<div>Pension:</div>
 				<input>
 			</div>
 
-		</section> <!--inputs section end-->
-
-</br>
+		</section> <!--advanced section end-->
 
 		<section class="radiobox">
 			<div class="top-wrapper group">
@@ -106,14 +65,20 @@ make footer scroll off the page
 		</section> <!--radiobox section end-->
 
 
-	<div id="pieChart">breakdown</div><div id="pieChart2"></div>
+	<div id="pieChart">breakdown</div>
+
+	<div>
+		<p>afterword</p>
+	</div>
+
 	</article> <!--mainContent end-->
 
-<div class="footer-parent">
-	<footer>
-	  <p>Footer content</p>
-	</footer>
-</div>
+	<div class="footer-parent">
+		<footer>
+		  <p>Footer content</p>
+		</footer>
+	</div>
+
 	<script type="text/javascript">
 		// Notes
 		//  need to add input validation

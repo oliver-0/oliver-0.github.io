@@ -58,6 +58,10 @@ footer {
   padding-top: 64px;
 }
 
+.introduction {
+  margin-bottom: 20px;
+}
+
 .mainContent {
   margin: 0 auto;
   margin-top: 15px;
@@ -85,41 +89,10 @@ footer {
   display: inline-block;
 }
 
+
 /* Advanced settings box */
-.advancedContent {
-  display: none;
-}
-
-fieldset.advancedFieldset {
-  border: 1px dotted black;
-}
-
-.advancedButtonLabel {
-  user-select: none;
-}
-
-label.advancedButtonLabel > span.triangle-right {
-  font-size: 8pt;
-}
-
-:checked + label.advancedButtonLabel > span.triangle-right {
-  transition: all 0.2s ease;
-  display: inline-block;
-  transform: rotate(90deg);
-}
-
-:not(:checked) + label.advancedButtonLabel > span.triangle-right {
-  transition: all 0.2s ease;
-  display: inline-block;
-  transform: rotate(0deg);
-}
-/* end Advanced settings box */
-
-
-
-/* new Advanced settings box */
 .advanced-section {
-  width: 400px;
+  width: 600px;
 }
 
 .advanced-header {
@@ -127,6 +100,7 @@ label.advancedButtonLabel > span.triangle-right {
   margin-top: 20px;
   padding: 10px;
   background-color: #eeeeee;
+  -ms-user-select: none;
   user-select: none;
 }
 
@@ -137,7 +111,6 @@ label.advancedButtonLabel > span.triangle-right {
 
 .advanced-header.active::after {
   content: "\2212";
-  float: right;
 }
 
 .advanced-content {
@@ -145,14 +118,13 @@ label.advancedButtonLabel > span.triangle-right {
   border: 2px solid #eeeeee;
   border-top: none;
   display: none;
-  padding-left: 10px;
+  padding: 10px;
 }
 
 .advanced-header.active + .advanced-content {
   display: block;
 }
-
-/* end new Advanced settings box */
+/* end Advanced settings box */
 
 
 
@@ -167,8 +139,8 @@ label.radiobox-label {
   float: left;
   width: 33.333333333333333%;
   padding: 6px 0 6px 0;
+  -ms-user-select: none;
   user-select: none;
-
 }
 
 label.radiobox-label:nth-of-type(2) {
@@ -229,7 +201,8 @@ label.radiobox-label:nth-of-type(2) {
 
 .radiobox {
   width: 281px;
-  margin: 30px;
+  margin: 20px;
+  margin-top: 30px;
   float: left;
 }
 /* end of Tabbed radio button box */

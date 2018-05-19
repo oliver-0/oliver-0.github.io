@@ -1,31 +1,5 @@
-// On DOMContentLoaded, adds event handlers to various inputs,
-//  to make the output update in real time whenever inputs are changed
-/*document.addEventListener('DOMContentLoaded', function addTakeHomePayEventHandlers() {
-  document.getElementById('inputIncome').oninput = calculateTakeHomePay; //note: calculateTakeHomePay also calls drawChart();
-  document.getElementById('studentLoan').onchange = calculateTakeHomePay;
-});
-
-document.addEventListener('DOMContentLoaded', function addAdvancedSectionOnclick() {
-  document.getElementById('advancedButtonLabel').onclick = showHideAdvancedSection;
-});*/
-
 document.getElementById('inputIncome').oninput = calculateTakeHomePay; //note: calculateTakeHomePay also calls drawChart();
 document.getElementById('studentLoan').onchange = calculateTakeHomePay;
-
-/*
-document.getElementById('advancedButtonLabel').onclick = showHideAdvancedSection;
-function showHideAdvancedSection() {
-  var advancedContent = document.getElementsByClassName('advancedContent');
-  if (document.getElementById('advancedCheckbox').checked == false) {
-    for (var i = 0; i < advancedContent.length; i++) {
-      advancedContent[i].style.display = "block";
-    }
-  } else {
-    for (var i = 0; i < advancedContent.length; i++) {
-      advancedContent[i].style.display = "none";
-    }
-  }
-}*/
 
 document.getElementById('advancedHeader').onclick = toggleAdvancedContent;
 function toggleAdvancedContent() {
@@ -35,7 +9,7 @@ function toggleAdvancedContent() {
 
 
 // Print a number with comma thousand separators using javascript:
-const numberWithCommas = (x) => {
+var numberWithCommas = function(x) {
   var parts = x.toString().split(".");
   parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     //explanation of the above regex:
@@ -43,7 +17,7 @@ const numberWithCommas = (x) => {
         //one positive to check for three sequential following digits (0-9) [that's ?=(\d{3})]
         //one negative to check that each multiple of three digits does not have a digit after it (so it only puts commas before 3 digits, not 4,5,6,+ digits) [that's ?!\d]
   return parts.join(".");
-}
+};
 
 
 // - - - Income Tax and Personal Allowance Calculations - - - //

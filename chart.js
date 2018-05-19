@@ -46,16 +46,15 @@ function drawChart() {
   var options = {
     title: 'Breakdown',
     pieSliceText: 'none',
-    pieSliceTextStyle: {
-      fontSize: 11
-    }
+    chartArea:{left:10,top:20,bottom:20,width:"100%",height:"100%"},
+    //pieSliceTextStyle: {fontSize: 8}
   };
 
   var chart = new google.visualization.PieChart(document.getElementById('pieChart'));
   //chart.draw(data, options);
 
   if (chartBasic + chartHigher + chartAdditional + studentLoan1 + studentLoan2 + NIConts + takeHome == 0) {
-    document.getElementById("pieChart").innerHTML="Enter a Salary to get a Breakdown";
+    document.getElementById("pieChart").innerHTML="";
   } else {
     document.getElementById("pieChart").innerHTML="";
     chart.draw(data, options);
