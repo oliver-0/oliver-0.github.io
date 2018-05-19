@@ -14,7 +14,7 @@
 		<section class="introduction">
 			<h4>Take-Home Pay Calculator</h4>
 			<p>This Take-Home Pay Calculator will calculate how much of your salary you get to
-				take home after Tax, National Insurance Contributions, Student Loans and more.</p>
+				take home after Tax, National Insurance, Student Loans and more.</p>
 		</section> <!--introduction section end-->
 
 
@@ -23,10 +23,12 @@
 
 		<section class="inputs-section">
 			<div class="inline">Enter Salary:</div>
-			<input id="inputIncome" name="inputIncome" type="number" autofocus>
+			<input id="inputIncome" name="inputIncome" type="number" min="0" max="99999999" pattern="\d*" autofocus>
 
-			<div class="inline">Scottish Tax:</div>
-			<div class="inline">Y/N</div>
+			<div class="scottishtax">
+				<div class="inline">Scottish Tax:</div>
+				<div class="inline">Y/N</div>
+			</div>
 		</section> <!--inputs section end-->
 
 		<section class="advanced-section">
@@ -58,14 +60,14 @@
 					<label class="radiobox-label" for="radioboxbutton-weekly">Weekly</label>
 			</div>
 			<div class="bottom-wrapper">
-				<div class="radiobox-content hidden" id="yearly-box">Yearly Take Home Pay: £0.00</div>
-				<div class="radiobox-content" id="monthly-box">Monthly Take Home Pay: £0.00</div>
-				<div class="radiobox-content hidden" id="weekly-box">Weekly Take Home Pay: £0.00</div>
+				<div class="radiobox-content hidden" id="yearly-box">Yearly Take Home Pay: &pound;0.00</div>
+				<div class="radiobox-content" id="monthly-box">Monthly Take Home Pay: &pound;0.00</div>
+				<div class="radiobox-content hidden" id="weekly-box">Weekly Take Home Pay: &pound;0.00</div>
 			</div>
 		</section> <!--radiobox section end-->
 
 
-	<div id="pieChart">breakdown</div>
+	<div id="pieChart"></div>
 
 	<div>
 		<p>afterword</p>
@@ -100,9 +102,9 @@
 			var monthlyOutput = yearlyOutput/12;
 			var weeklyOutput = yearlyOutput/52;
 			//toFixed() turns a number into a string with forced 2dp.
-			document.getElementById("yearly-box").innerHTML = "Yearly Take Home Pay: £" + numberWithCommas(yearlyOutput.toFixed(2));
-			document.getElementById("monthly-box").innerHTML = "Monthly Take Home Pay: £" + numberWithCommas(monthlyOutput.toFixed(2));
-			document.getElementById("weekly-box").innerHTML = "Weekly Take Home Pay: £" + numberWithCommas(weeklyOutput.toFixed(2));
+			document.getElementById("yearly-box").innerHTML = "Yearly Take Home Pay: &pound;" + numberWithCommas(yearlyOutput.toFixed(2));
+			document.getElementById("monthly-box").innerHTML = "Monthly Take Home Pay: &pound;" + numberWithCommas(monthlyOutput.toFixed(2));
+			document.getElementById("weekly-box").innerHTML = "Weekly Take Home Pay: &pound;" + numberWithCommas(weeklyOutput.toFixed(2));
 			drawChart();
 		}
 	</script>

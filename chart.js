@@ -43,6 +43,7 @@ function drawChart() {
   );
   formatter.format(data, 1);
 
+
   var options = {
     title: 'Breakdown',
     pieSliceText: 'none',
@@ -54,7 +55,7 @@ function drawChart() {
   //chart.draw(data, options);
 
   if (chartBasic + chartHigher + chartAdditional + studentLoan1 + studentLoan2 + NIConts + takeHome == 0) {
-    document.getElementById("pieChart").innerHTML="";
+    document.getElementById("pieChart").innerHTML="Enter Salary";
   } else {
     document.getElementById("pieChart").innerHTML="";
     chart.draw(data, options);

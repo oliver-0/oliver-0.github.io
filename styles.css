@@ -11,7 +11,7 @@ html, body {
 }
 
 html {
-  overflow-y: scroll;
+  /*overflow-y: scroll;*/
   margin: 0;
   height: 100%;
   box-sizing: border-box;
@@ -90,7 +90,16 @@ footer {
 }
 
 
-/* Advanced settings box */
+/* Basic Inputs section*/
+
+.scottishtax {
+  float: right;
+}
+
+/* end Basic Inputs section*/
+
+
+/* Advanced settings section */
 .advanced-section {
   width: 600px;
 }
@@ -216,20 +225,27 @@ label.radiobox-label:nth-of-type(2) {
   width: 400px;
 }
 
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 817px) {
   .mainContent {
-    width: 100vw;
+    /*width: 100vw;*/
+    width: 100%;
     margin: 0;
   }
   .mainHeaderText {
-    width: 100vw;
+    /*width: 100vw;*/
+    width: 100%;
   }
   .advanced-section {
     width: 80vw;
   }
   .radiobox {
     margin: 0 auto;
+    margin-top: 30px;
     float: none;
+  }
+  footer {
+    /*width: 100vw;*/
+    width: 100%;
   }
   #pieChart {
     width: 90vw;
