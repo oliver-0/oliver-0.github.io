@@ -2,11 +2,11 @@
 <html>
 <head>
 	<title>Take-Home Pay Calculator</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no" />
 	<link rel="stylesheet" href="styles.css">
-	<script type="text/javascript" src="take_home_pay_calculator.js"></script>
-	<script type="text/javascript" src="radiobox.js"></script>
 </head>
 <!--To do:
+change the advanced box to this accordion style: https://www.w3schools.com/howto/howto_js_accordion.asp
 add preamble / wording
 input validation
 input 'sanitation'? xss?
@@ -33,20 +33,16 @@ make footer scroll off the page
 
 
 
-		<section class="inputs">
-			<div>Enter Salary:</div>
+		<section class="inputs-section">
+			<div class="inline">Enter Salary:</div>
 			<input id="inputIncome" name="inputIncome" type="number" autofocus>
 
-			<div>Student Loan type:</div>
-			<select id="studentLoan" name="studentLoan">
-				<option class="studentLoanOption" value="plan0">No Student Loan</option>
-				<option class="studentLoanOption" value="plan1">Student Loan Plan 1</option>
-				<option class="studentLoanOption" value="plan2">Student Loan Plan 2</option>
-			</select>
+			<div class="inline">Scottish Tax:</div>
+			<div class="inline">Y/N</div>
+		</section> <!--inputs section end-->
 
-			<div>Scottish Tax:</div>
-			<div>Y/N</div>
 
+<!--
 			<fieldset class="advancedFieldset">
 				<legend><input type="checkbox" value="1" class="hidden" id="advancedCheckbox"><label id="advancedButtonLabel" class="advancedButtonLabel" for="advancedCheckbox">Advanced <span class="triangle-right">▶</span></label></legend>
 
@@ -60,7 +56,34 @@ make footer scroll off the page
 				<div class="advancedContent">Y/N</div>
 			</fieldset>
 
+			<fieldset class="advancedFieldset">
+				<legend><input type="checkbox" value="1" class="hidden" id="advancedCheckbox"><label id="advancedButtonLabel" class="advancedButtonLabel" for="advancedCheckbox">Advanced <span class="triangle-right">▶</span></label></legend>
 
+				<div class="advancedContent">Pension:</div>
+				<input type="number" class="advancedContent">
+
+				<div class="advancedContent">NI Exemption? (e.g. over SPA)</div>
+				<div class="advancedContent">Y/N</div>
+
+				<div class="advancedContent">Blind person?</div>
+				<div class="advancedContent">Y/N</div>
+			</fieldset> -->
+		<section class="advanced-section">
+			<h4 id="advancedHeader" class="advanced-header">Advanced</h4>
+			<div id="advancedContent" class="advanced-content">
+				<div>Student Loan type:</div>
+				<select id="studentLoan" name="studentLoan">
+					<option class="studentLoanOption" value="plan0">No Student Loan</option>
+					<option class="studentLoanOption" value="plan1">Student Loan Plan 1</option>
+					<option class="studentLoanOption" value="plan2">Student Loan Plan 2</option>
+				</select>
+
+				<div>NI Exemption? (e.g. over SPA)</div>
+				<div>Y/N</div>
+
+				<div>Pension:</div>
+				<input>
+			</div>
 
 		</section> <!--inputs section end-->
 
@@ -120,5 +143,7 @@ make footer scroll off the page
 	</script>
 	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 	<script type="text/javascript" src="chart.js"></script>
+	<script type="text/javascript" src="take_home_pay_calculator.js"></script>
+	<script type="text/javascript" src="radiobox.js"></script>
 </body>
 </html>

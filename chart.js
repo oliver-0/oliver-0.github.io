@@ -32,9 +32,9 @@ function drawChart() {
     ['Basic Rate Tax (20%)', chartBasic],
     ['Higher Rate Tax (40%)', chartHigher],
     ['Additional Rate Tax (45%)', chartAdditional],
+    ['NI Contributions', NIConts],
     ['Student Loan (Plan 1)', studentLoan1],
     ['Student Loan (Plan 2)', studentLoan2],
-    ['NI Contributions', NIConts],
     ['Take-Home Pay', takeHome]
   ]);
 
@@ -45,10 +45,9 @@ function drawChart() {
 
   var options = {
     title: 'Breakdown',
-    pieSliceText: 'value',
-    /*pieStartAngle: 60,*/
+    pieSliceText: 'none',
     pieSliceTextStyle: {
-    fontSize: 11
+      fontSize: 11
     }
   };
 

@@ -6,8 +6,8 @@
 }
 
 html, body {
-	/*background: url("background2.png");*/
-	padding: 0;
+  /*background: url("background2.png");*/
+  padding: 0;
 }
 
 html {
@@ -21,6 +21,7 @@ html {
 *:before,
 *:after {
   box-sizing: inherit;
+  margin: 0 auto;
 }
 
 body {
@@ -35,13 +36,13 @@ body {
 }
 
 header {
-	margin: 0 auto;
-	display: block;
-	color: #4a5154;
-	border-bottom: 2px solid #99baef;
-	width: 100%;
-	background-color: #ffffff;
-	padding-top: 0;
+  margin: 0 auto;
+  display: block;
+  color: #4a5154;
+  border-bottom: 2px solid #99baef;
+  width: 100%;
+  background-color: #ffffff;
+  padding-top: 0;
 }
 
 footer {
@@ -58,29 +59,33 @@ footer {
 }
 
 .mainContent {
-	margin: 0 auto;
+  margin: 0 auto;
   margin-top: 15px;
-	display:block;
-	background-color: #ffffff;
-	width: 800px;
-	padding: 20px;
+  display:block;
+  background-color: #ffffff;
+  width: 800px;
+  padding: 20px;
   border: 1px solid rgba(0,0,0,0.08);
 }
 
 .mainHeaderText {
-	padding-left: 20px;
-	padding-top: 15px;
-	padding-bottom: 15px;
-	margin: 0 auto;
-	text-align: left;
-  width: 60%;
+  padding-left: 20px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  margin: 0 auto;
+  text-align: left;
+  width: 800px;
 }
 
 .hidden {
   display: none;
 }
 
-/* Styling the advanced settings box */
+.inline {
+  display: inline-block;
+}
+
+/* Advanced settings box */
 .advancedContent {
   display: none;
 }
@@ -102,21 +107,65 @@ label.advancedButtonLabel > span.triangle-right {
   display: inline-block;
   transform: rotate(90deg);
 }
-/*end Styling the advanced settings box*/
+
+:not(:checked) + label.advancedButtonLabel > span.triangle-right {
+  transition: all 0.2s ease;
+  display: inline-block;
+  transform: rotate(0deg);
+}
+/* end Advanced settings box */
 
 
 
+/* new Advanced settings box */
+.advanced-section {
+  width: 400px;
+}
 
-/* Styling the tabbed radio button box */
+.advanced-header {
+  width: 100%;
+  margin-top: 20px;
+  padding: 10px;
+  background-color: #eeeeee;
+  user-select: none;
+}
+
+.advanced-header::after {
+  content: "\002B";
+  float: right;
+}
+
+.advanced-header.active::after {
+  content: "\2212";
+  float: right;
+}
+
+.advanced-content {
+  width: 100%;
+  border: 2px solid #eeeeee;
+  border-top: none;
+  display: none;
+  padding-left: 10px;
+}
+
+.advanced-header.active + .advanced-content {
+  display: block;
+}
+
+/* end new Advanced settings box */
+
+
+
+/* Tabbed radio button box */
 label.radiobox-label {
   /* display: block; - leaves a small gap to the right - doesn't seem to like 33.33% width, but flex seems to handle it fine?*/
   display: flex;
   justify-content: center;
-	height: 100%;
+  height: 100%;
   font-weight: bold;
   background: white;
   float: left;
-  width: 33.3333333333%;
+  width: 33.333333333333333%;
   padding: 6px 0 6px 0;
   user-select: none;
 
@@ -179,14 +228,37 @@ label.radiobox-label:nth-of-type(2) {
 }
 
 .radiobox {
-  width: 280px;
+  width: 281px;
   margin: 30px;
-
+  float: left;
 }
-/* end of Styling the tabbed radio button box */
+/* end of Tabbed radio button box */
+
 
 #pieChart {
+  display: inline-block;
   margin: 0 auto;
-  height: 300px;
-  width: 600px;
+  margin-top: 30px;
+  height: 200px;
+  width: 400px;
+}
+
+@media screen and (max-width: 800px) {
+  .mainContent {
+    width: 100vw;
+    margin: 0;
+  }
+  .mainHeaderText {
+    width: 100vw;
+  }
+  .advanced-section {
+    width: 80vw;
+  }
+  .radiobox {
+    margin: 0 auto;
+    float: none;
+  }
+  #pieChart {
+    width: 90vw;
+  }
 }
