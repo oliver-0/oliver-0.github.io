@@ -15,6 +15,8 @@ html {
   margin: 0;
   height: 100%;
   box-sizing: border-box;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 13px;
 }
 
 *,
@@ -29,8 +31,6 @@ body {
   margin: auto;
   min-height: 100%;
   margin-top: 0;
-  font-family: 'Montserrat', sans-serif;
-  font-size: 12px;
   background-color: rgba(0,0,0,0.02);
   padding: 0;
 }
@@ -38,14 +38,15 @@ body {
 header {
   margin: 0 auto;
   display: block;
-  color: #4a5154;
   border-bottom: 2px solid #99baef;
   width: 100%;
   background-color: #ffffff;
   padding-top: 0;
 }
 
+/*  Footer */
 footer {
+  font-size: 15px;
   background-color: #eeeeee;
   position: absolute;
   right: 0;
@@ -53,6 +54,30 @@ footer {
   bottom: 0;
   width: 100%;
 }
+div.footer-flex-container {
+  padding: 0 3px 0 3px;
+  width: 800px;
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+footer p {
+  width: 75%;
+  padding: 10px 0 0 0;
+  flex-shrink: 2;
+  /*remember to change the height of the footer-parent to the height of the footer*/
+}
+
+footer a {
+  flex-shrink: 1;
+  padding: 10px 0;
+}
+
+footer div.spacer {
+  margin: 0 3px 0 3px;
+  padding: 10px 0;
+}
+/* end Footer */
 
 label {
   user-select: none;
@@ -60,6 +85,11 @@ label {
 
 .footer-parent {
   padding-top: 64px;
+}
+
+.tagline {
+  color: #4a5154;
+  margin-bottom: 10px;
 }
 
 .introduction {
@@ -77,6 +107,7 @@ label {
 }
 
 .mainHeaderText {
+  color: #4a5154;
   padding-left: 20px;
   padding-top: 15px;
   padding-bottom: 15px;
@@ -97,6 +128,10 @@ label {
   margin: 20px 40px 20px 40px;
 }
 
+input[type=number] {
+  border: 1px solid #b2b2b2;
+}
+
 
 
 /* Basic Inputs section*/
@@ -107,7 +142,7 @@ label {
 
 .basic-input {
   display: inline-block;
-  width: 49%;
+  width: 50%;
 }
 
 .basic-input:nth-of-type(2) {
@@ -123,12 +158,12 @@ div.basic-input > * {
 
 /* Advanced settings section */
 .advanced-section {
+  margin-top: 20px;
   width: 720px;
 }
 
 .advanced-header {
   width: 100%;
-  margin-top: 20px;
   padding: 10px;
   background-color: #eeeeee;
   border: 1px solid #b2b2b2;
@@ -173,7 +208,7 @@ div.advanced-input > * {
 
 
 
-/* Tabbed radio button box */
+/* Yearly/Monthly/Weekly output box */
 label.radiobox-label {
   /* display: block; - leaves a small gap to the right - doesn't seem to like 33.33% width, but flex seems to handle it fine?*/
   display: flex;
@@ -183,7 +218,8 @@ label.radiobox-label {
   background: white;
   float: left;
   width: 33.333333333333333%;
-  padding: 6px 0 6px 0;
+  /*padding: 6px 0 6px 0;*/
+  padding: 10px 0 10px 0;
   -ms-user-select: none;
   user-select: none;
 }
@@ -196,8 +232,10 @@ label.radiobox-label:nth-of-type(2) {
 :checked+label.radiobox-label {
   border-top: 3px solid #99baef;
   margin-top: -1px;
-  padding-top: 4px;
-  padding-bottom: 7px;
+  /*padding-top: 4px;*/
+  padding-top: 8px;
+  /*padding-bottom: 7px;*/
+  padding-bottom: 11px;
   border-bottom: none;
 }
 
@@ -224,13 +262,18 @@ label.radiobox-label:nth-of-type(2) {
 
 .bottom-wrapper {
   margin-top: -2px;
-  padding-top: 50px;
-  padding-bottom: 50px;
+  padding-top: 74px;
+  padding-bottom: 74px;
+  height: 100%;
   text-align: center;
   background-color: #ffffff;
   box-shadow: 3px 3px 5px #cccccc;
   border: 1px solid rgba(0,0,0,0.3);
   z-index: 3;
+}
+
+.radiobox-content {
+  font-size: 14px;
 }
 
 .radiobox {
@@ -239,13 +282,16 @@ label.radiobox-label:nth-of-type(2) {
   margin-top: 30px;
   float: left;
 }
-/* end of Tabbed radio button box */
+/* end Yearly/Monthly/Weekly output box */
 
+.afterword {
+  margin: 20px 40px;
+}
 
 #pieChart {
   display: inline-block;
   margin: 0 auto;
-  margin-top: 30px;
+  margin: 30px 0px;
   height: 200px;
   width: 400px;
   padding-left: 10px;
@@ -276,19 +322,25 @@ label.radiobox-label:nth-of-type(2) {
     min-width: 281px;
     width: 90vw;
   }
+  .bottom-wrapper {
+    padding: 30px 0;
+  }
   .inputs-section {
+    margin: 0 auto;
     width: 90vw;
   }
   .basic-input {
     display: inline-block;
     text-align: center;
     width: 40vw;
-    }/*
-  .basic-input > * {
-    display: inline-block;
-  }*/
+    }
   footer {
-    /*width: 100vw;*/
+    width: 100%;
+  }
+  footer a {
+    /*margin-left: 3px;*/
+  }
+  div.footer-flex-container {
     width: 100%;
   }
   #pieChart {

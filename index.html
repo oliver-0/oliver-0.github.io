@@ -13,17 +13,15 @@
 	</header>
 	<article class="mainContent">
 		<section class="introduction">
-			<h4>Take-Home Pay Calculator</h4>
+			<h4 class="tagline">How much of your pay will you get to keep?</h4>
 			<p>This Take-Home Pay Calculator will calculate how much of your salary you get to
 				take home after Tax, National Insurance, Student Loans and more.</p>
 		</section> <!--introduction section end-->
 
 
-
-
 		<section class="inputs-section">
 			<div class="basic-input inline">
-				<div class="inline">Enter Salary:</div>
+				<div class="inline">Enter Salary: £</div>
 				<input id="inputIncome" name="inputIncome" type="number" min="0" max="99999999" pattern="\d*" autofocus>
 			</div>
 			<div class="basic-input inline">
@@ -68,16 +66,16 @@
 					<label class="radiobox-label" for="radioboxbutton-weekly">Weekly</label>
 			</div>
 			<div class="bottom-wrapper">
-				<div class="radiobox-content" id="yearly-box">Yearly Take Home Pay: &pound;0.00</div>
-				<div class="radiobox-content hidden" id="monthly-box">Monthly Take Home Pay: &pound;0.00</div>
-				<div class="radiobox-content hidden" id="weekly-box">Weekly Take Home Pay: &pound;0.00</div>
+				<div class="radiobox-content" id="yearly-box">Yearly Take-Home Pay: &pound;0.00</div>
+				<div class="radiobox-content hidden" id="monthly-box">Monthly Take-Home Pay: &pound;0.00</div>
+				<div class="radiobox-content hidden" id="weekly-box">Weekly Take-Home Pay: &pound;0.00</div>
 			</div>
 		</section> <!--radiobox section end-->
 
 
 	<div id="pieChart"></div>
 
-	<div>
+	<section class="afterword">
 		<p>afterword</p>
 	</div>
 
@@ -85,7 +83,12 @@
 
 	<div class="footer-parent">
 		<footer>
-		  <p>Footer content</p>
+			<div class="footer-flex-container">
+			  <p>Oliver Davies</p>
+				<a>github</a><div class="spacer">|</div>
+				<a>LinkedIn</a><div class="spacer">|</div>
+				<a>CV</a><div class="spacer"></div>
+			</div>
 		</footer>
 	</div>
 
@@ -111,9 +114,9 @@
 			var monthlyOutput = yearlyOutput/12;
 			var weeklyOutput = yearlyOutput/52;
 			//toFixed() turns a number into a string with forced 2dp.
-			document.getElementById("yearly-box").innerHTML = "Yearly Take Home Pay: &pound;" + numberWithCommas(yearlyOutput.toFixed(2));
-			document.getElementById("monthly-box").innerHTML = "Monthly Take Home Pay: &pound;" + numberWithCommas(monthlyOutput.toFixed(2));
-			document.getElementById("weekly-box").innerHTML = "Weekly Take Home Pay: &pound;" + numberWithCommas(weeklyOutput.toFixed(2));
+			document.getElementById("yearly-box").innerHTML = "Yearly Take-Home Pay: &pound;" + numberWithCommas(yearlyOutput.toFixed(2));
+			document.getElementById("monthly-box").innerHTML = "Monthly Take-Home Pay: &pound;" + numberWithCommas(monthlyOutput.toFixed(2));
+			document.getElementById("weekly-box").innerHTML = "Weekly Take-Home Pay: &pound;" + numberWithCommas(weeklyOutput.toFixed(2));
 			drawChart();
 		}
 	</script>
