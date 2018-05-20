@@ -77,14 +77,14 @@ footer div.spacer {
   margin: 0 3px 0 3px;
   padding: 10px 0;
 }
+
+.footer-parent {
+  padding-top: 37px;
+}
 /* end Footer */
 
 label {
   user-select: none;
-}
-
-.footer-parent {
-  padding-top: 64px;
 }
 
 .tagline {
@@ -97,8 +97,8 @@ label {
 }
 
 .mainContent {
-  margin: 0 auto;
-  margin-top: 15px;
+  margin: 15px auto;
+  /*margin-top: 15px;*/
   display:block;
   background-color: #ffffff;
   width: 800px;
@@ -132,7 +132,9 @@ input[type=number] {
   border: 1px solid #b2b2b2;
 }
 
-
+.currency {
+  padding-right: 2px;
+}
 
 /* Basic Inputs section*/
 
@@ -169,6 +171,10 @@ div.basic-input > * {
   border: 1px solid #b2b2b2;
   -ms-user-select: none;
   user-select: none;
+}
+
+.advanced-header:hover {
+  background-color: #dedede;
 }
 
 .advanced-header::after {
