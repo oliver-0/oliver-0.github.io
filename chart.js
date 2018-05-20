@@ -5,10 +5,11 @@ function drawChart() {
   var chartPlaceholder = "Enter a salary";
   var income = document.getElementById('inputIncome').value;
   var studentLoanType = document.querySelector('select[id="studentLoan"]').value;
-  var after_Tax_Annual = (income - taxPayable(income) - studentLoan(income, studentLoanType) - totalNIConts(income));
+  var NIExemption = document.getElementById('noNI').checked;
+  var after_Tax_Annual = (income - taxPayable(income) - studentLoan(income, studentLoanType) - totalNIContsModified(income, NIExemption));
   var takeHome = (1/100)*Math.floor((after_Tax_Annual)*100);
     takeHome = parseInt(takeHome.toFixed(0));
-  var NIConts = totalNIConts(income);
+  var NIConts = totalNIContsModified(income, NIExemption);
     NIConts = parseInt(NIConts.toFixed(0));
   var studentLoan1, studentLoan2;
   if (studentLoanType == "plan2") {
@@ -38,16 +39,19 @@ function drawChart() {
     ['Take-Home Pay', takeHome]
   ]);
 
-  var formatter = new google.visualization.NumberFormat(
+  /*var formatter = new google.visualization.NumberFormat(
     {pattern: '£#,##0'}
+  );*/
+  var formatter = new google.visualization.NumberFormat(
+    {prefix: '£'}
   );
   formatter.format(data, 1);
 
 
   var options = {
-    title: 'Breakdown',
+    title: 'Breakdown of yearly earnings',
     pieSliceText: 'none',
-    chartArea:{left:10,top:20,bottom:20,width:"100%",height:"100%"},
+    chartArea:{left:0,top:20,bottom:20,width:"100%",height:"100%"},
     //pieSliceTextStyle: {fontSize: 8}
   };
 
@@ -55,7 +59,7 @@ function drawChart() {
   //chart.draw(data, options);
 
   if (chartBasic + chartHigher + chartAdditional + studentLoan1 + studentLoan2 + NIConts + takeHome == 0) {
-    document.getElementById("pieChart").innerHTML="Enter Salary";
+    document.getElementById("pieChart").innerHTML="";
   } else {
     document.getElementById("pieChart").innerHTML="";
     chart.draw(data, options);

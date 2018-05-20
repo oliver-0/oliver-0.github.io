@@ -54,6 +54,10 @@ footer {
   width: 100%;
 }
 
+label {
+  user-select: none;
+}
+
 .footer-parent {
   padding-top: 64px;
 }
@@ -89,11 +93,21 @@ footer {
   display: inline-block;
 }
 
+.den {font-size: 75%;} /*CSS Fractions*/
+.num {font-size: 75%; vertical-align:.5ex} /*CSS Fractions*/
+
+.right {
+  float: right;
+}
 
 /* Basic Inputs section*/
 
-.scottishtax {
-  float: right;
+.basic-input {
+
+}
+
+div.advanced-input > * {
+  display: inline-block;
 }
 
 /* end Basic Inputs section*/
@@ -109,6 +123,7 @@ footer {
   margin-top: 20px;
   padding: 10px;
   background-color: #eeeeee;
+  border: 1px solid #b2b2b2;
   -ms-user-select: none;
   user-select: none;
 }
@@ -124,14 +139,26 @@ footer {
 
 .advanced-content {
   width: 100%;
-  border: 2px solid #eeeeee;
+  border: 1px solid #b2b2b2;
   border-top: none;
   display: none;
-  padding: 10px;
+  padding: 10px 10px 0px 10px;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 10px;
 }
 
 .advanced-header.active + .advanced-content {
+  display: grid;
+}
+
+.advanced-input {
+  margin-bottom: 10px;
+  margin-left: 0px;
   display: block;
+}
+
+div.advanced-input > * {
+  display: inline-block;
 }
 /* end Advanced settings box */
 

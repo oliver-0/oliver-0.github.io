@@ -4,6 +4,7 @@
 	<title>Take-Home Pay Calculator</title>
 	<!--<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no" />-->
 	<meta name="viewport" content="width=device-width" />
+	<meta charset=”utf-8”>
 	<link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -20,12 +21,19 @@
 
 
 
-
+<p><span class="num">£</span>/<span class="den">yr</span>
+<span class="num">£</span>/<span class="den">mo</span>
+</p>
 		<section class="inputs-section">
-			<div class="inline">Enter Salary:</div>
-			<input id="inputIncome" name="inputIncome" type="number" min="0" max="99999999" pattern="\d*" autofocus>
-
-			<div class="scottishtax">
+			<div class="basic-input inline">
+				<div class="inline">Enter Salary:</div>
+				<select id=incomeOption name="incomeOption">
+					<option><span class="num">£</span>/<span class="den">year</span></option>
+					<option>£/hour</option>
+				</select>
+				<input id="inputIncome" name="inputIncome" type="number" min="0" max="99999999" pattern="\d*" autofocus>
+			</div>
+			<div class="basic-input inline right group">
 				<div class="inline">Scottish Tax:</div>
 				<div class="inline">Y/N</div>
 			</div>
@@ -34,34 +42,41 @@
 		<section class="advanced-section">
 			<h4 id="advancedHeader" class="advanced-header">More options</h4>
 			<div id="advancedContent" class="advanced-content">
-				<div class="inline">Student Loan type:</div>
-				<select id="studentLoan" name="studentLoan">
-					<option class="studentLoanOption" value="plan0">No Student Loan</option>
-					<option class="studentLoanOption" value="plan1">Student Loan Plan 1</option>
-					<option class="studentLoanOption" value="plan2">Student Loan Plan 2</option>
-				</select>
-
-				<div class="inline">NI Exemption? (e.g. over SPA)</div>
-				<div class="inline">Y/N</div>
-
-				<div>Pension:</div>
-				<input>
+				<div class="advanced-input">
+					<div>Student Loan type:</div>
+					<select id="studentLoan" name="studentLoan">
+						<option class="studentLoanOption" value="plan0">No Student Loan</option>
+						<option class="studentLoanOption" value="plan1">Student Loan Plan 1</option>
+						<option class="studentLoanOption" value="plan2">Student Loan Plan 2</option>
+					</select>
+				</div>
+				<div class="advanced-input">
+					<label for="noNI">I do not pay National Insurance</label>
+					<input id="noNI" type="checkbox" value="NIExempt">
+				</div>
+				<div class="advanced-input">
+					<div>Pension contributions:</div>
+					<input type="number" min="0" max="99999999">
+				</div>
+				<div class="advanced-input">
+					<div>Other tax-free benefit:</div>
+					<input type="number" min="0" max="99999999">
+				</div>
 			</div>
-
 		</section> <!--advanced section end-->
 
 		<section class="radiobox">
 			<div class="top-wrapper group">
-				<input type="radio" class="radiobox-button hidden" name="radiobox" id="radioboxbutton-yearly" value="yearly-box">
+				<input type="radio" class="radiobox-button hidden" name="radiobox" id="radioboxbutton-yearly" value="yearly-box" checked>
 					<label class="radiobox-label" for="radioboxbutton-yearly">Yearly</label>
-				<input type="radio" class="radiobox-button hidden" name="radiobox" id="radioboxbutton-monthly" value="monthly-box" checked>
+				<input type="radio" class="radiobox-button hidden" name="radiobox" id="radioboxbutton-monthly" value="monthly-box">
 					<label class="radiobox-label" for="radioboxbutton-monthly">Monthly</label>
 				<input type="radio" class="radiobox-button hidden" name="radiobox" id="radioboxbutton-weekly" value="weekly-box">
 					<label class="radiobox-label" for="radioboxbutton-weekly">Weekly</label>
 			</div>
 			<div class="bottom-wrapper">
-				<div class="radiobox-content hidden" id="yearly-box">Yearly Take Home Pay: &pound;0.00</div>
-				<div class="radiobox-content" id="monthly-box">Monthly Take Home Pay: &pound;0.00</div>
+				<div class="radiobox-content" id="yearly-box">Yearly Take Home Pay: &pound;0.00</div>
+				<div class="radiobox-content hidden" id="monthly-box">Monthly Take Home Pay: &pound;0.00</div>
 				<div class="radiobox-content hidden" id="weekly-box">Weekly Take Home Pay: &pound;0.00</div>
 			</div>
 		</section> <!--radiobox section end-->
@@ -94,9 +109,10 @@
 			//console.log("student loan type "+studentLoanType)
 			//console.log("taxPayable:"+taxPayable(income))
 			//console.log("studentLoan:"+studentLoan(income, studentLoanType))
-			//console.log("totalNIConts:"+totalNIConts(income))
+			//console.log("totalNIContsModified:"+totalNIContsModified(income, NIExemption))
 			//console.log("personalAllowanceCap"+personalAllowanceCap(income))
-			var after_Tax_Annual = (income - taxPayable(income) - studentLoan(income, studentLoanType) - totalNIConts(income));
+			var NIExemption = document.getElementById('noNI').checked;
+			var after_Tax_Annual = (income - taxPayable(income) - studentLoan(income, studentLoanType) - totalNIContsModified(income, NIExemption));
 			//this line divides the calculated annual Take Home Pay by 12 to get Monthly, rounds to 2dp, and puts the result into the page
 			var yearlyOutput = (1/100)*Math.floor((after_Tax_Annual)*100);
 			var monthlyOutput = yearlyOutput/12;

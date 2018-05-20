@@ -1,5 +1,6 @@
 document.getElementById('inputIncome').oninput = calculateTakeHomePay; //note: calculateTakeHomePay also calls drawChart();
 document.getElementById('studentLoan').onchange = calculateTakeHomePay;
+document.getElementById('noNI').onchange = calculateTakeHomePay;
 
 document.getElementById('advancedHeader').onclick = toggleAdvancedContent;
 function toggleAdvancedContent() {
@@ -128,4 +129,12 @@ function totalNIConts(income){ //takes per annum Gross Income as an input, retur
   } else {
     return 0;
   }
+}
+//modified function to accept 2nd argument, for those exempt to paying National Insurance
+function totalNIContsModified(income, exemption) {
+	if (exemption === true) {
+		return 0;
+	} else {
+		return totalNIConts(income);
+	}
 }
