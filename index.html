@@ -21,21 +21,14 @@
 
 
 
-<p><span class="num">£</span>/<span class="den">yr</span>
-<span class="num">£</span>/<span class="den">mo</span>
-</p>
 		<section class="inputs-section">
 			<div class="basic-input inline">
 				<div class="inline">Enter Salary:</div>
-				<select id=incomeOption name="incomeOption">
-					<option><span class="num">£</span>/<span class="den">year</span></option>
-					<option>£/hour</option>
-				</select>
 				<input id="inputIncome" name="inputIncome" type="number" min="0" max="99999999" pattern="\d*" autofocus>
 			</div>
-			<div class="basic-input inline right group">
-				<div class="inline">Scottish Tax:</div>
-				<div class="inline">Y/N</div>
+			<div class="basic-input inline">
+				<label for="scottishTax" class="inline">Use Scottish Tax Rates:</label>
+				<input id="scottishTax" type="checkbox" name="scottishTax" class="inline">
 			</div>
 		</section> <!--inputs section end-->
 

@@ -72,7 +72,7 @@ label {
   display:block;
   background-color: #ffffff;
   width: 800px;
-  padding: 20px;
+  /*padding: 20px;*/
   border: 1px solid rgba(0,0,0,0.08);
 }
 
@@ -93,20 +93,28 @@ label {
   display: inline-block;
 }
 
-.den {font-size: 75%;} /*CSS Fractions*/
-.num {font-size: 75%; vertical-align:.5ex} /*CSS Fractions*/
-
-.right {
-  float: right;
+.introduction {
+  margin: 20px 40px 20px 40px;
 }
+
+
 
 /* Basic Inputs section*/
 
-.basic-input {
-
+.inputs-section {
+  margin: 0px 40px 0px 40px;
 }
 
-div.advanced-input > * {
+.basic-input {
+  display: inline-block;
+  width: 49%;
+}
+
+.basic-input:nth-of-type(2) {
+  text-align: right;
+}
+
+div.basic-input > * {
   display: inline-block;
 }
 
@@ -115,7 +123,7 @@ div.advanced-input > * {
 
 /* Advanced settings section */
 .advanced-section {
-  width: 600px;
+  width: 720px;
 }
 
 .advanced-header {
@@ -130,6 +138,7 @@ div.advanced-input > * {
 
 .advanced-header::after {
   content: "\002B";
+  font-size: 14px;
   float: right;
 }
 
@@ -142,7 +151,7 @@ div.advanced-input > * {
   border: 1px solid #b2b2b2;
   border-top: none;
   display: none;
-  padding: 10px 10px 0px 10px;
+  padding: 10px 20px 0px 20px;
   grid-template-columns: repeat(2, 1fr);
   grid-gap: 10px;
 }
@@ -213,17 +222,6 @@ label.radiobox-label:nth-of-type(2) {
   z-index: 2;
 }
 
-/*adding a line before bottom wrapper*//*
-.bottom-wrapper::before {
-  position: relative;
-  bottom: 50px;
-  content: "";
-  display: block;
-  border-bottom: 1px solid black;
-  width: 100%;
-}*/
-/*//adding a line*/
-
 .bottom-wrapper {
   margin-top: -2px;
   padding-top: 50px;
@@ -237,7 +235,7 @@ label.radiobox-label:nth-of-type(2) {
 
 .radiobox {
   width: 281px;
-  margin: 20px;
+  margin: 40px;
   margin-top: 30px;
   float: left;
 }
@@ -250,31 +248,53 @@ label.radiobox-label:nth-of-type(2) {
   margin-top: 30px;
   height: 200px;
   width: 400px;
+  padding-left: 10px;
+  border: 1px solid #b2b2b2;
 }
 
 @media screen and (max-width: 817px) {
   .mainContent {
     /*width: 100vw;*/
     width: 100%;
-    margin: 0;
+    margin: 0 auto;
   }
   .mainHeaderText {
     /*width: 100vw;*/
     width: 100%;
   }
+  .introduction {
+    width: 90vw;
+    margin: 20px auto;
+  }
   .advanced-section {
-    width: 80vw;
+    width: 90vw;
   }
   .radiobox {
     margin: 0 auto;
     margin-top: 30px;
     float: none;
+    min-width: 281px;
+    width: 90vw;
   }
+  .inputs-section {
+    width: 90vw;
+  }
+  .basic-input {
+    display: inline-block;
+    text-align: center;
+    width: 40vw;
+    }/*
+  .basic-input > * {
+    display: inline-block;
+  }*/
   footer {
     /*width: 100vw;*/
     width: 100%;
   }
   #pieChart {
     width: 90vw;
+    margin: 0 auto;
+    margin-top: 30px;
+    display: block;
   }
 }

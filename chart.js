@@ -50,8 +50,9 @@ function drawChart() {
 
   var options = {
     title: 'Breakdown of yearly earnings',
+    titleArea:{left:30},
     pieSliceText: 'none',
-    chartArea:{left:0,top:20,bottom:20,width:"100%",height:"100%"},
+    chartArea:{left:0,top:30,bottom:10,width:"100%",height:"100%"},
     //pieSliceTextStyle: {fontSize: 8}
   };
 
@@ -60,6 +61,7 @@ function drawChart() {
 
   if (chartBasic + chartHigher + chartAdditional + studentLoan1 + studentLoan2 + NIConts + takeHome == 0) {
     document.getElementById("pieChart").innerHTML="";
+    chart.draw(data, options);
   } else {
     document.getElementById("pieChart").innerHTML="";
     chart.draw(data, options);
