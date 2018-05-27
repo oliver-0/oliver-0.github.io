@@ -404,6 +404,7 @@ label.radiobox-label:nth-of-type(2) {
   }
   .advanced-content .maxwidth {
     max-width: 150px;
+    min-width: 40%;
     margin-left: 0px;
   }
 
