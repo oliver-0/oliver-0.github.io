@@ -22,7 +22,7 @@
 		<section class="inputs-section">
 			<div class="basic-input inline">
 				<div class="inline">Enter Salary: </div>
-				<span class="currency">£ </span><input id="inputIncome" name="inputIncome" type="number" min="0" max="99999999" pattern="\d*" autofocus>
+				<span class="currency">£ </span><input id="inputIncome" name="inputIncome" type="number" min="0" max="99999999" step="500" pattern="\d*" autofocus>
 			</div>
 			<div class="basic-input inline">
 				<label for="scottishTax" class="inline">Use Scottish Tax Rates:</label>
@@ -33,7 +33,7 @@
 		<section class="advanced-section">
 			<h4 id="advancedHeader" class="advanced-header">More options</h4>
 			<div id="advancedContent" class="advanced-content">
-				<div class="advanced-input">
+				<div class="advanced-input maxwidth">
 					<div>Student Loan type:</div>
 					<select id="studentLoan" name="studentLoan">
 						<option class="studentLoanOption" value="plan0">No Student Loan</option>
@@ -41,15 +41,15 @@
 						<option class="studentLoanOption" value="plan2">Student Loan Plan 2</option>
 					</select>
 				</div>
-				<div class="advanced-input">
-					<label for="noNI">I do not pay National Insurance</label>
-					<input id="noNI" type="checkbox" value="NIExempt">
+				<div class="advanced-input maxwidth">
+					<input id="noNI" type="checkbox" value="NIExempt"><label for="noNI">I do not pay National Insurance</label>
+
 				</div>
-				<div class="advanced-input">
+				<div class="advanced-input maxwidth">
 					<div>Pension contributions:</div>
 					<span class="currency">£ </span><input type="number" min="0" max="99999999">
 				</div>
-				<div class="advanced-input">
+				<div class="advanced-input maxwidth">
 					<div>Other tax-free benefit:</div>
 					<span class="currency">£ </span><input type="number" min="0" max="99999999">
 				</div>
@@ -77,7 +77,7 @@
 
 	<section class="afterword">
 		<p>afterword</p>
-	</div>
+	</section>
 
 	</article> <!--mainContent end-->
 
@@ -93,11 +93,8 @@
 	</div>
 
 	<script type="text/javascript">
-		// Notes
-		//  need to add input validation
-		//
 		// This function calculates the output Take Home Pay
-		//	It runs whenever the input box is edited, or when a radio button is selected
+		//	It runs whenever any inputs' values are changed
 		function calculateTakeHomePay() {
 			var income = document.getElementById('inputIncome').value;
 			// This takes the LoanType from the radio buttons in the form inputs
@@ -109,11 +106,10 @@
 			//console.log("personalAllowanceCap"+personalAllowanceCap(income))
 			var NIExemption = document.getElementById('noNI').checked;
 			var after_Tax_Annual = (income - taxPayable(income) - studentLoan(income, studentLoanType) - totalNIContsModified(income, NIExemption));
-			//this line divides the calculated annual Take Home Pay by 12 to get Monthly, rounds to 2dp, and puts the result into the page
+			//round the annual take-home pay down to 2dp, then divide into monthly and weekly equivalents
 			var yearlyOutput = (1/100)*Math.floor((after_Tax_Annual)*100);
 			var monthlyOutput = yearlyOutput/12;
 			var weeklyOutput = yearlyOutput/52;
-			//toFixed() turns a number into a string with forced 2dp.
 			document.getElementById("yearly-box").innerHTML = "Yearly Take-Home Pay: &pound;" + numberWithCommas(yearlyOutput.toFixed(2));
 			document.getElementById("monthly-box").innerHTML = "Monthly Take-Home Pay: &pound;" + numberWithCommas(monthlyOutput.toFixed(2));
 			document.getElementById("weekly-box").innerHTML = "Weekly Take-Home Pay: &pound;" + numberWithCommas(weeklyOutput.toFixed(2));

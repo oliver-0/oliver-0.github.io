@@ -2,6 +2,7 @@ google.charts.load('current', {'packages':['corechart']});
 google.charts.setOnLoadCallback(drawChart);
 
 function drawChart() {
+  //drawChart() is called at the end of calculateTakeHomePay(), so all of the inputs' values should be stored
   var chartPlaceholder = "Enter a salary";
   var income = document.getElementById('inputIncome').value;
   var studentLoanType = document.querySelector('select[id="studentLoan"]').value;

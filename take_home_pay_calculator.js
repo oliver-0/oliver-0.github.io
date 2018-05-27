@@ -1,10 +1,31 @@
+document.addEventListener('DOMContentLoaded', calculateTakeHomePay); //runs
+
 document.getElementById('inputIncome').oninput = calculateTakeHomePay; //note: calculateTakeHomePay also calls drawChart();
 document.getElementById('studentLoan').onchange = calculateTakeHomePay;
 document.getElementById('noNI').onchange = calculateTakeHomePay;
 
+/*window.addEventListener('resize', drawChartCheck() {
+
+});*/
+
 document.getElementById('advancedHeader').onclick = toggleAdvancedContent;
 function toggleAdvancedContent() {
-	this.classList.toggle("active");
+	//this.classList.toggle("active");
+	var x = document.getElementById("advancedHeader");
+
+	if (x.classList) {
+	    x.classList.toggle("active");
+	} else {
+	    // For IE9
+	    var classes = x.className.split(" ");
+	    var i = classes.indexOf("active");
+
+	    if (i >= 0)
+	        classes.splice(i, 1);
+	    else
+	        classes.push("active");
+	        x.className = classes.join(" ");
+	}
 }
 
 
