@@ -200,35 +200,39 @@ div.basic-input > * {
 }
 
 .advanced-header.active + .advanced-content {
-  height: 79px;
+  height: 300px; /*TEMPORARY*/
   margin-top: 0;
   padding: 10px 20px 0px 20px;
   border: 1px solid #b2b2b2;
   border-top: none;
-  display: flex;
-  flex-wrap: wrap;
+  /*display: flex;
+  flex-wrap: wrap;*/
 }
 
-.advanced-content * {
+.advanced-content .advanced-input {
   display: none;
 }
 
-.advanced-header.active + .advanced-content > * {
-  display: inline-flex;
-  flex-basis: 50%;
+.advanced-header.active + .advanced-content .advanced-input {
+  display: table-cell;
+  /*flex-basis: 50%;*/
 }
 
 .advanced-header.active + .advanced-content .advanced-input * {
-  display: block;
-  flex-basis: 50%;
+  /*display: block;*/
+  /*flex-basis: 50%;*/
 }
 
 .advanced-input {
   margin-bottom: 10px;
-  margin-left: 0px;
+  /*margin-left: 0px;*/
 }
 
-/*div.advanced-input > * {
+table, tbody {
+  width: 100%;
+}
+
+/*.advanced-input > * {
   display: inline-block;
 }*/
 /* end Advanced settings box */
@@ -325,6 +329,67 @@ label.radiobox-label:nth-of-type(2) {
   border: 1px solid #b2b2b2;
 }
 
+
+
+
+
+
+
+
+/*             NEEDS TO BE INCORPORATED               */
+
+.advanced-header.active + .advanced-content {
+  padding: 10px 5px 0px 5px;
+  height: auto;
+}
+input[type=checkbox] {
+  float:right;
+  margin: 1px auto 1px 5px;
+  height: 13px;
+  width: 13px;
+}
+/*.advanced-input * {
+  display: block;
+  overflow: hidden;
+}*/
+.advanced-input span.currency {
+  /*float: left;
+  margin: 2px auto 2px auto;*/
+}
+.advanced-input input[type=number], .advanced-input select {
+  margin-left: 0px;
+  height: 19px;
+  line-height: 19px;
+}
+/*.advanced-header.active + .advanced-content > * {
+  display: inline-block;
+}*/
+.advanced-content .max-width {
+  max-width: 350px;
+  /*margin-left: auto;*/
+}
+.advanced-input * {
+  display: inline-block;
+}
+
+
+/*             NEEDS TO BE INCORPORATED               */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 @media screen and (max-width: 820px) {
   .mainContent {
     /*width: 100vw;*/
@@ -386,10 +451,10 @@ label.radiobox-label:nth-of-type(2) {
     height: 14px;
     width: 14px;
   }
-  .advanced-input * {
+  /*.advanced-input * {
     display: block;
     overflow: hidden;
-  }
+  }*/
   .advanced-input span.currency {
     float: left;
     margin: 2px auto 2px auto;
@@ -399,16 +464,18 @@ label.radiobox-label:nth-of-type(2) {
     height: 19px;
     line-height: 19px;
   }
-  .advanced-header.active + .advanced-content > * {
+  /*.advanced-header.active + .advanced-content > * {
     display: inline-block;
-  }
-  .advanced-content .maxwidth {
-    max-width: 150px;
-    min-width: 40%;
-    margin-left: 0px;
-  }
-
-  /*.advanced-input > * {
-    margin: auto;
   }*/
+  .advanced-content .max-width {
+    max-width: 150px;
+    /*margin-left: auto;*/
+  }
+  /*.advanced-content .advanced-input.minwidth {
+    min-width: 45%;
+  }*/
+
+  .advanced-input * {
+    display: block;
+  }
 }
