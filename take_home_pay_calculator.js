@@ -6,6 +6,7 @@ window.setTimeout(calculateTakeHomePay, 250);
 document.getElementById('inputIncome').oninput = calculateTakeHomePay; //note: calculateTakeHomePay also calls drawChart();
 document.getElementById('studentLoan').onchange = calculateTakeHomePay;
 document.getElementById('noNI').onchange = calculateTakeHomePay;
+document.getElementById('scottishTax').onchange = calculateTakeHomePay;
 
 
 //added a drawChart to window.resize, so that when resizing in and out of the mobile threshold the chart doesn't overflow the page width
@@ -49,7 +50,7 @@ function toggleAdvancedContent() {
 
 
 // - - - Income Tax and Personal Allowance Calculations - - - //
-
+//
 // taxPayable - calculates the total tax payable based on gross income
 // - depends on function personalAllowanceCap(), and therefore roundDownToNearest2Pound() also.
 // Declarations for taxPayable():
@@ -57,7 +58,7 @@ var basic_Rate, higher_Rate, additional_Rate, basic_Rate_Cap, higher_Rate_Cap;
 basic_Rate = 0.20;
 higher_Rate = 0.40;
 additional_Rate = 0.45;
-basic_Rate_Cap = 46500;
+basic_Rate_Cap = 46350;
 higher_Rate_Cap = 150000;
 // Declarations for the Chart outputs
 var chartBasic, chartHigher, chartAdditional;
@@ -73,16 +74,16 @@ function taxPayable(income) {
   chartBasic = 0;
   if (income >= higher_Rate_Cap) { //if income is over £150k, you get all three tax bands.
     chartAdditional = (income - higher_Rate_Cap) * additional_Rate;
-    chartHigher = (higher_Rate_Cap - basic_Rate_Cap) * higher_Rate;
-    chartBasic = (basic_Rate_Cap - personalAllowanceCap(income)) * basic_Rate;
-    return ((income - higher_Rate_Cap) * additional_Rate) + ((higher_Rate_Cap - basic_Rate_Cap) * higher_Rate) + ((basic_Rate_Cap - personalAllowanceCap(income)) * basic_Rate);
+    chartHigher = (higher_Rate_Cap - basic_Rate_Cap + (personal_Allowance_Cap_Basic - personalAllowanceCap(income)) ) * higher_Rate;
+    chartBasic = (basic_Rate_Cap - personal_Allowance_Cap_Basic) * basic_Rate;
+    return ((income - higher_Rate_Cap) * additional_Rate) + ((higher_Rate_Cap - basic_Rate_Cap + (personal_Allowance_Cap_Basic - personalAllowanceCap(income)) ) * higher_Rate) + ((basic_Rate_Cap - personal_Allowance_Cap_Basic) * basic_Rate);
   } else if(income >= basic_Rate_Cap) { //if income is over £46.5k (and under £150k), you only get Basic and Higher Rate Tax.
     chartHigher = (income - basic_Rate_Cap + (personal_Allowance_Cap_Basic - personalAllowanceCap(income))) * higher_Rate;
     chartBasic = (basic_Rate_Cap - personal_Allowance_Cap_Basic) * basic_Rate;
     return ((income - basic_Rate_Cap + (personal_Allowance_Cap_Basic - personalAllowanceCap(income))) * higher_Rate) + ((basic_Rate_Cap - personal_Allowance_Cap_Basic) * basic_Rate);
-  } else if(income >= personalAllowanceCap(income)) { //if income is over £11,850 (and under £46.5k) you only get Basic Rate Tax.
-    chartBasic = (income - personalAllowanceCap(income)) * basic_Rate;
-    return (income - personalAllowanceCap(income)) * basic_Rate;
+  } else if(income >= personal_Allowance_Cap_Basic) { //if income is over £11,850 (and under £46.5k) you only get Basic Rate Tax.
+    chartBasic = (income - personal_Allowance_Cap_Basic) * basic_Rate;
+    return (income - personal_Allowance_Cap_Basic) * basic_Rate;
   } else {
     return 0;
   }
@@ -95,9 +96,9 @@ function roundDownToNearest2Pound(income){ //rounds a number down to the nearest
 function personalAllowanceCap(income) { //takes per annum Gross Income as an input, returns annual Personal Allowance
   if (income >= personal_Allowance_Max_Income) { //personal allowance over £123,700 is £0
     return  0;
-  } else if (income >= personal_Allowance_Min_Income) {
+  } else if (income >= personal_Allowance_Min_Income) { //personal allowance over £100,000 is variable (goes down by £1 every £2 you go over £100,000 income)
     return personal_Allowance_Cap_Basic - ((roundDownToNearest2Pound(income) - personal_Allowance_Min_Income) * 0.5 );
-  } else {
+  } else { //personal allowance under £100,000 is £11,850
     return personal_Allowance_Cap_Basic;
   }
 }

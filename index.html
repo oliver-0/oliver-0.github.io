@@ -114,12 +114,19 @@
 			// This takes the LoanType from the radio buttons in the form inputs
 			var studentLoanType = document.querySelector('select[id="studentLoan"]').value;
 			//console.log("student loan type "+studentLoanType)
-			//console.log("taxPayable:"+taxPayable(income))
+			//console.log("tax:"+tax(income))
 			//console.log("studentLoan:"+studentLoan(income, studentLoanType))
 			//console.log("totalNIContsModified:"+totalNIContsModified(income, NIExemption))
 			//console.log("personalAllowanceCap"+personalAllowanceCap(income))
 			var NIExemption = document.getElementById('noNI').checked;
-			var after_Tax_Annual = (income - taxPayable(income) - studentLoan(income, studentLoanType) - totalNIContsModified(income, NIExemption));
+			function tax(x) {
+				if (document.getElementById('scottishTax').checked == true) {
+					return scot_taxPayable(x);
+				} else {
+					return taxPayable(x);
+				}
+			}
+			var after_Tax_Annual = (income - tax(income) - studentLoan(income, studentLoanType) - totalNIContsModified(income, NIExemption));
 			//round the annual take-home pay down to 2dp, then divide into monthly and weekly equivalents
 			var yearlyOutput = (1/100)*Math.floor((after_Tax_Annual)*100);
 			var monthlyOutput = yearlyOutput/12;
@@ -134,5 +141,6 @@
 	<script type="text/javascript" src="chart.js"></script>
 	<script type="text/javascript" src="take_home_pay_calculator.js"></script>
 	<script type="text/javascript" src="radiobox.js"></script>
+	<script type="text/javascript" src="scottishtax.js"></script>
 </body>
 </html>
