@@ -6,7 +6,6 @@
 }
 
 html, body {
-  /*background: url("background2.png");*/
   padding: 0;
 }
 
@@ -15,7 +14,7 @@ html {
   margin: 0;
   height: 100%;
   box-sizing: border-box;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Roboto', sans-serif;
   font-size: 13px;
 }
 
@@ -137,6 +136,11 @@ input[type=number] {
   padding-right: 2px;
 }
 
+.percentage {
+  padding-left: 2px;
+  /*float: left;*/
+}
+
 /* Basic Inputs section*/
 
 .inputs-section {
@@ -146,6 +150,7 @@ input[type=number] {
 .basic-input {
   display: inline-block;
   width: 50%;
+  font-size: 14px;
 }
 
 .basic-input:nth-of-type(2) {
@@ -163,6 +168,8 @@ div.basic-input > * {
 .advanced-section {
   margin-top: 20px;
   width: 720px;
+  /*box-shadow: 3px 3px 5px #cccccc;*/ /* to REMOVE */
+  box-shadow: 2px 2px 5px #dddddd; /* to REMOVE */
 }
 
 .advanced-header {
@@ -240,6 +247,10 @@ div.basic-input > * {
 .advanced-input * {
   display: inline-block;
 }
+
+.advanced-input input.pension-input {
+  display: inline-block;
+}
 /* end More Options (advanced) section */
 
 
@@ -287,6 +298,7 @@ label.radiobox-label:nth-of-type(2) {
 
 .top-wrapper {
   box-shadow: 3px 3px 5px #cccccc; /* on white: rbga(0,0,0,0.2), rgb(204,204,204) */
+    box-shadow: 2px 2px 5px #dddddd; /* to REMOVE */
   border-top: 1px solid rgba(0,0,0,0.3);
   border-left: 1px solid rgba(0,0,0,0.3);
   border-right: 1px solid rgba(0,0,0,0.3);
@@ -295,18 +307,19 @@ label.radiobox-label:nth-of-type(2) {
 
 .bottom-wrapper {
   margin-top: -2px;
-  padding-top: 74px;
-  padding-bottom: 74px;
+  padding-top: 71px;
+  padding-bottom: 72px;
   height: 100%;
   text-align: center;
   background-color: #ffffff;
   box-shadow: 3px 3px 5px #cccccc;
+    box-shadow: 2px 2px 5px #dddddd; /* to REMOVE */
   border: 1px solid rgba(0,0,0,0.3);
   z-index: 3;
 }
 
 .radiobox-content {
-  font-size: 14px;
+  font-size: 15px;
 }
 
 .radiobox {
@@ -331,6 +344,8 @@ label.radiobox-label:nth-of-type(2) {
   width: 400px;
   padding-left: 10px;
   border: 1px solid #b2b2b2;
+  box-shadow: 3px 3px 5px #cccccc; /* to REMOVE */
+    box-shadow: 2px 2px 5px #dddddd; /* to REMOVE */
 }
 
 
@@ -387,7 +402,7 @@ label.radiobox-label:nth-of-type(2) {
   }
   .advanced-content input[type=checkbox] {
   float:right;
-  margin: 8px auto 8px 5px;
+  margin: 8px auto 8px 3px;
   height: 14px;
   width: 14px;
 }

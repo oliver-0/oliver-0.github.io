@@ -1,34 +1,44 @@
 //initial run to handle auto-filled inputs (inputs that have values on pageload) - timeout is to cover google chart loadtime
 window.setTimeout(calculateTakeHomePay, 250);
 
+
 //Subsequent runs whenever an input value is changed
 document.getElementById('inputIncome').oninput = calculateTakeHomePay; //note: calculateTakeHomePay also calls drawChart();
 document.getElementById('studentLoan').onchange = calculateTakeHomePay;
 document.getElementById('noNI').onchange = calculateTakeHomePay;
 
-//added a drawChart to window.resize, so that when resizing in and out of the mobile threshold the graph doesn't overflow the page width
+
+//added a drawChart to window.resize, so that when resizing in and out of the mobile threshold the chart doesn't overflow the page width
 width = window.innerWidth;
 window.addEventListener('resize', drawChartCheck);
 function drawChartCheck() {
 	if (width !== window.innerWidth) {
-		drawChart(); //prevents drawChart from runnig where width did not change on resize - stops screen jumping when mobile browsers' address bars show/hide
+		drawChart(); //prevents drawChart from running where width did not change on resize - stops screen jumping when mobile browsers' address bars show/hide
 	}
 	width = window.innerWidth;
 }
 
+
+//add comma thousand separators to a number
+function numberWithCommas(x) {
+  var parts = x.toString().split(".");
+  parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  return parts.join(".");
+}
+
+
+//show/hide 'More Options' onclick of the header of the more options box, using classList.toggle
 document.getElementById('advancedHeader').onclick = toggleAdvancedContent;
 function toggleAdvancedContent() {
-	//browser-compatible equivalent to classList.toggle, for IE/Edge support
-	//this.classList.toggle("active");
+	//this.classList.toggle("active"); //old one-liner that worked for all but IE/Edge
+	//browser-compatible equivalent to classList.toggle, for IE/Edge support:
 	var x = document.getElementById("advancedHeader");
-
 	if (x.classList) {
 	    x.classList.toggle("active");
 	} else {
-	    // For IE9
+	    // For IE9+
 	    var classes = x.className.split(" ");
 	    var i = classes.indexOf("active");
-
 	    if (i >= 0)
 	        classes.splice(i, 1);
 	    else
@@ -36,19 +46,6 @@ function toggleAdvancedContent() {
 	        x.className = classes.join(" ");
 	}
 }
-
-
-
-// Print a number with comma thousand separators using javascript:
-var numberWithCommas = function(x) {
-  var parts = x.toString().split(".");
-  parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-    //explanation of the above regex:
-      //two lookaheads:
-        //one positive to check for three sequential following digits (0-9) [that's ?=(\d{3})]
-        //one negative to check that each multiple of three digits does not have a digit after it (so it only puts commas before 3 digits, not 4,5,6,+ digits) [that's ?!\d]
-  return parts.join(".");
-};
 
 
 // - - - Income Tax and Personal Allowance Calculations - - - //
