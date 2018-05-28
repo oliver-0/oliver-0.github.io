@@ -1,15 +1,20 @@
-//document.addEventListener('DOMContentLoaded', calculateTakeHomePay); //runs on pageload
+//initial run to handle auto-filled inputs (inputs that have values on pageload) - timeout is to cover google chart loadtime
+window.setTimeout(calculateTakeHomePay, 250);
 
+//Subsequent runs whenever an input value is changed
 document.getElementById('inputIncome').oninput = calculateTakeHomePay; //note: calculateTakeHomePay also calls drawChart();
 document.getElementById('studentLoan').onchange = calculateTakeHomePay;
 document.getElementById('noNI').onchange = calculateTakeHomePay;
 
-/*window.addEventListener('resize', drawChartCheck() {
-
-});*/
+//added a drawChart to window.resize, so that when resizing in and out of the mobile threshold the graph doesn't overflow the page width
+window.addEventListener('resize', drawChartCheck);
+function drawChartCheck() {
+	drawChart();
+}
 
 document.getElementById('advancedHeader').onclick = toggleAdvancedContent;
 function toggleAdvancedContent() {
+	//browser-compatible equivalent to classList.toggle, for IE/Edge support
 	//this.classList.toggle("active");
 	var x = document.getElementById("advancedHeader");
 
@@ -159,13 +164,3 @@ function totalNIContsModified(income, exemption) {
 		return totalNIConts(income);
 	}
 }
-
-
-var timeoutID;
-
-function delayedAlert() {
-  timeoutID = window.setTimeout(calculateTakeHomePay, 200);
-
-}
-
-delayedAlert();
