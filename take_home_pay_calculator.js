@@ -159,3 +159,13 @@ function totalNIContsModified(income, exemption) {
 		return totalNIConts(income);
 	}
 }
+
+
+var timeoutID;
+
+function delayedAlert() {
+  timeoutID = window.setTimeout(calculateTakeHomePay, 200);
+
+}
+
+delayedAlert();
