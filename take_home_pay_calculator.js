@@ -7,9 +7,13 @@ document.getElementById('studentLoan').onchange = calculateTakeHomePay;
 document.getElementById('noNI').onchange = calculateTakeHomePay;
 
 //added a drawChart to window.resize, so that when resizing in and out of the mobile threshold the graph doesn't overflow the page width
+width = window.innerWidth;
 window.addEventListener('resize', drawChartCheck);
 function drawChartCheck() {
-	drawChart();
+	if (width !== window.innerWidth) {
+		drawChart(); //prevents drawChart from runnig where width did not change on resize - stops screen jumping when mobile browsers' address bars show/hide
+	}
+	width = window.innerWidth;
 }
 
 document.getElementById('advancedHeader').onclick = toggleAdvancedContent;
