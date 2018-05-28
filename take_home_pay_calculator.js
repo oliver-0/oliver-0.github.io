@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', calculateTakeHomePay); //runs
+//document.addEventListener('DOMContentLoaded', calculateTakeHomePay); //runs on pageload
 
 document.getElementById('inputIncome').oninput = calculateTakeHomePay; //note: calculateTakeHomePay also calls drawChart();
 document.getElementById('studentLoan').onchange = calculateTakeHomePay;

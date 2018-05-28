@@ -40,9 +40,6 @@ function drawChart() {
     ['Take-Home Pay', takeHome]
   ]);
 
-  /*var formatter = new google.visualization.NumberFormat(
-    {pattern: '£#,##0'}
-  );*/
   var formatter = new google.visualization.NumberFormat(
     {prefix: '£'}
   );
@@ -54,17 +51,15 @@ function drawChart() {
     titleArea:{left:30},
     pieSliceText: 'none',
     chartArea:{left:0,top:30,bottom:10,width:"100%",height:"100%"},
-    //pieSliceTextStyle: {fontSize: 8}
   };
 
   var chart = new google.visualization.PieChart(document.getElementById('pieChart'));
   //chart.draw(data, options);
-
   if (chartBasic + chartHigher + chartAdditional + studentLoan1 + studentLoan2 + NIConts + takeHome == 0) {
-    document.getElementById("pieChart").innerHTML="";
+    //document.getElementById("pieChart").innerHTML="";
     chart.draw(data, options);
   } else {
-    document.getElementById("pieChart").innerHTML="";
+    //document.getElementById("pieChart").innerHTML="";
     chart.draw(data, options);
   }
 }

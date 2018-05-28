@@ -155,11 +155,11 @@ input[type=number] {
 div.basic-input > * {
   display: inline-block;
 }
-
 /* end Basic Inputs section*/
 
 
-/* Advanced settings section */
+
+/* More Options (advanced) section */
 .advanced-section {
   margin-top: 20px;
   width: 720px;
@@ -189,7 +189,6 @@ div.basic-input > * {
 }
 
 .advanced-content {
-  /*display: none;*/
   height: 0;
   width: 100%;
   -webkit-transition: height 0.3s ease;
@@ -200,48 +199,54 @@ div.basic-input > * {
 }
 
 .advanced-header.active + .advanced-content {
-  height: 300px; /*TEMPORARY*/
   margin-top: 0;
   padding: 10px 20px 0px 20px;
   border: 1px solid #b2b2b2;
   border-top: none;
-  /*display: flex;
-  flex-wrap: wrap;*/
+  height: 77px;
+  /*height: auto;*/ /*debugging*/
 }
 
 .advanced-content .advanced-input {
   display: none;
+  padding-bottom: 10px;
 }
 
 .advanced-header.active + .advanced-content .advanced-input {
   display: table-cell;
-  /*flex-basis: 50%;*/
 }
 
-.advanced-header.active + .advanced-content .advanced-input * {
-  /*display: block;*/
-  /*flex-basis: 50%;*/
-}
-
-.advanced-input {
-  margin-bottom: 10px;
-  /*margin-left: 0px;*/
-}
-
-table, tbody {
+.advanced-content table, .advanced-content tbody {
   width: 100%;
 }
 
-/*.advanced-input > * {
+.advanced-content td {
+  width: 50%;
+}
+
+.advanced-content input[type=checkbox] {
+  float:right;
+  margin: 1px auto 1px 5px;
+  height: 13px;
+  width: 13px;
+}
+
+.advanced-input input[type=number], .advanced-input select {
+  margin-left: 0px;
+  height: 19px;
+  line-height: 19px;
+}
+
+.advanced-input * {
   display: inline-block;
-}*/
-/* end Advanced settings box */
+}
+/* end More Options (advanced) section */
 
 
 
 /* Yearly/Monthly/Weekly output box */
 label.radiobox-label {
-  /* display: block; - leaves a small gap to the right - doesn't seem to like 33.33% width, but flex seems to handle it fine?*/
+  /* display: block; leaves a small gap to the right - doesn't seem to like 33.33% width, but flex seems to handle it fine?*/
   display: flex;
   justify-content: center;
   height: 100%;
@@ -249,23 +254,20 @@ label.radiobox-label {
   background: white;
   float: left;
   width: 33.333333333333333%;
-  /*padding: 6px 0 6px 0;*/
   padding: 10px 0 10px 0;
   -ms-user-select: none;
   user-select: none;
 }
 
 label.radiobox-label:nth-of-type(2) {
-  border-left: 1px solid #b2b2b2; /* rbga(0,0,0,0.3), rgb(178,178,178) */
+  border-left: 1px solid #b2b2b2; /* on white: rbga(0,0,0,0.3), rgb(178,178,178) */
   border-right: 1px solid #b2b2b2;
 }
 
 :checked+label.radiobox-label {
   border-top: 3px solid #99baef;
   margin-top: -1px;
-  /*padding-top: 4px;*/
   padding-top: 8px;
-  /*padding-bottom: 7px;*/
   padding-bottom: 11px;
   border-bottom: none;
 }
@@ -284,7 +286,7 @@ label.radiobox-label:nth-of-type(2) {
 }
 
 .top-wrapper {
-  box-shadow: 3px 3px 5px #cccccc; /* rbga(0,0,0,0.2), rgb(204,204,204) */
+  box-shadow: 3px 3px 5px #cccccc; /* on white: rbga(0,0,0,0.2), rgb(204,204,204) */
   border-top: 1px solid rgba(0,0,0,0.3);
   border-left: 1px solid rgba(0,0,0,0.3);
   border-right: 1px solid rgba(0,0,0,0.3);
@@ -315,6 +317,8 @@ label.radiobox-label:nth-of-type(2) {
 }
 /* end Yearly/Monthly/Weekly output box */
 
+
+
 .afterword {
   margin: 20px 40px;
 }
@@ -331,73 +335,12 @@ label.radiobox-label:nth-of-type(2) {
 
 
 
-
-
-
-
-
-/*             NEEDS TO BE INCORPORATED               */
-
-.advanced-header.active + .advanced-content {
-  padding: 10px 5px 0px 5px;
-  height: auto;
-}
-input[type=checkbox] {
-  float:right;
-  margin: 1px auto 1px 5px;
-  height: 13px;
-  width: 13px;
-}
-/*.advanced-input * {
-  display: block;
-  overflow: hidden;
-}*/
-.advanced-input span.currency {
-  /*float: left;
-  margin: 2px auto 2px auto;*/
-}
-.advanced-input input[type=number], .advanced-input select {
-  margin-left: 0px;
-  height: 19px;
-  line-height: 19px;
-}
-/*.advanced-header.active + .advanced-content > * {
-  display: inline-block;
-}*/
-.advanced-content .max-width {
-  max-width: 350px;
-  /*margin-left: auto;*/
-}
-.advanced-input * {
-  display: inline-block;
-}
-
-
-/*             NEEDS TO BE INCORPORATED               */
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 @media screen and (max-width: 820px) {
   .mainContent {
-    /*width: 100vw;*/
     width: 100%;
     margin: 0 auto;
   }
   .mainHeaderText {
-    /*width: 100vw;*/
     width: 100%;
   }
   .introduction {
@@ -429,9 +372,6 @@ input[type=checkbox] {
   footer {
     width: 100%;
   }
-  footer a {
-    /*margin-left: 3px;*/
-  }
   div.footer-flex-container {
     width: 100%;
   }
@@ -443,38 +383,21 @@ input[type=checkbox] {
   }
   .advanced-header.active + .advanced-content {
     padding: 10px 5px 0px 5px;
-    height: auto;
+    height: 107px;
   }
-  input[type=checkbox] {
-    float:right;
-    margin: 8px auto 8px 5px;
-    height: 14px;
-    width: 14px;
-  }
-  /*.advanced-input * {
-    display: block;
-    overflow: hidden;
-  }*/
+  .advanced-content input[type=checkbox] {
+  float:right;
+  margin: 8px auto 8px 5px;
+  height: 14px;
+  width: 14px;
+}
   .advanced-input span.currency {
     float: left;
     margin: 2px auto 2px auto;
   }
-  .advanced-input input[type=number], .advanced-input select {
-    margin-left: 0px;
-    height: 19px;
-    line-height: 19px;
-  }
-  /*.advanced-header.active + .advanced-content > * {
-    display: inline-block;
-  }*/
   .advanced-content .max-width {
     max-width: 150px;
-    /*margin-left: auto;*/
   }
-  /*.advanced-content .advanced-input.minwidth {
-    min-width: 45%;
-  }*/
-
   .advanced-input * {
     display: block;
   }
