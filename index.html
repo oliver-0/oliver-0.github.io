@@ -22,7 +22,7 @@
 		<section class="inputs-section">
 			<div class="basic-input">
 				<div class="">Enter Salary: </div>
-				<span class="currency">£ </span><input id="inputIncome" name="inputIncome" type="number" min="0" max="99999999" step="500" pattern="\d*" autofocus>
+				<span class="currency">£ </span><input id="inputIncome" name="inputIncome" type="number" min="0" max="99999999" step="500" pattern="\d*" class="input" autofocus>
 			</div>
 			<div class="basic-input">
 				<label for="scottishTax" class="">Use Scottish Tax Rates:</label>
@@ -55,13 +55,13 @@
 					<td class="advanced-input">
 						<div class="max-width">
 							<div>Pension contributions:</div>
-							<span class="percentage"><input class="pension-input" type="number" min="0" max="100"> %</span>
+							<span class="percentage"><input class="pension-input" type="number" min="0" max="100" class="input"> %</span>
 						</div>
 					</td>
 					<td class="advanced-input">
 						<div class="max-width">
 							<div>Tax-free benefits:</div>
-							<span class="currency">£ </span><input type="number" min="0" max="99999999">
+							<span class="currency">£ </span><input type="number" min="0" max="99999999" class="input">
 						</div>
 					</td>
 				</tr>
@@ -137,9 +137,12 @@
 		}
 	</script>
 	<script>
-		document.getElementById('inputIncome').addEventListener('keyup',function(e){
-		    if (e.which == 13) this.blur();
-		});
+		var inputs = document.getElementsByClassName('inputIncome');
+		for (var i = 0, i < inputs.length, i++) {
+			inputs[i].addEventListener('keyup',function(e){
+					if (e.which == 13) this.blur();
+			});
+		}
 </script>
 	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 	<script type="text/javascript" src="chart.js"></script>
