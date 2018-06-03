@@ -9,6 +9,15 @@ document.getElementById('noNI').onchange = calculateTakeHomePay;
 document.getElementById('scottishTax').onchange = calculateTakeHomePay;
 
 
+//Remove keyboard focus from input elements on press Enter - hides mobile number input keyboards when you press 'Go'.
+var inputs = document.getElementsByClassName('input');
+for (var i = 0; i < inputs.length; i++) {
+	inputs[i].addEventListener('keyup',function(e){
+			if (e.which == 13) this.blur();
+	});
+}
+
+
 //added a drawChart to window.resize, so that when resizing in and out of the mobile threshold the chart doesn't overflow the page width
 width = window.innerWidth;
 window.addEventListener('resize', drawChartCheck);
