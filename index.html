@@ -136,6 +136,11 @@
 			drawChart();
 		}
 	</script>
+	<script>
+		document.getElementById('inputIncome').addEventListener('keyup',function(e){
+		    if (e.which == 13) this.blur();
+		});
+</script>
 	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 	<script type="text/javascript" src="chart.js"></script>
 	<script type="text/javascript" src="take_home_pay_calculator.js"></script>
