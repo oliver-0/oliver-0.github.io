@@ -250,7 +250,7 @@ div.basic-input > * {
   display: inline-block;
 }
 
-.advanced-input input.pension-input {
+.advanced-input #pension-input {
   display: inline-block;
 }
 /* end More Options (advanced) section */
