@@ -54,7 +54,7 @@ footer {
   width: 100%;
 }
 div.footer-flex-container {
-  padding: 0 3px 0 3px;
+  padding: 0 10px 0 10px;
   width: 800px;
   display: flex;
   flex-wrap: nowrap;
@@ -98,11 +98,9 @@ label {
 
 .mainContent {
   margin: 15px auto;
-  /*margin-top: 15px;*/
   display:block;
   background-color: #ffffff;
   width: 800px;
-  /*padding: 20px;*/
   border: 1px solid rgba(0,0,0,0.08);
 }
 
@@ -128,7 +126,7 @@ label {
   margin: 20px 40px 20px 40px;
 }
 
-input[type=number] {
+input[type=number], select {
   border: 1px solid #b2b2b2;
 }
 
@@ -138,27 +136,31 @@ input[type=number] {
 
 .percentage {
   padding-left: 2px;
-  /*float: left;*/
 }
 
 /* Basic Inputs section*/
-
 .inputs-section {
+  display: flex;
   margin: 0px 40px 0px 40px;
+  /*justify-content: flex-start;*/
 }
 
 .basic-input {
-  display: inline-block;
-  width: 50%;
+  margin-top: 10px;
+  display: inline-flex;
   font-size: 14px;
 }
 
 .basic-input:nth-of-type(2) {
-  text-align: right;
+  /*text-align: right;*/
 }
 
 div.basic-input > * {
   display: inline-block;
+}
+
+#scottishTax {
+  margin: 2px 0 2px 0;
 }
 /* end Basic Inputs section*/
 
@@ -378,11 +380,12 @@ label.radiobox-label:nth-of-type(2) {
   .inputs-section {
     margin: 0 auto;
     width: 95vw;
+    display: block;
   }
   .basic-input {
-    display: inline-block;
+    display: block;
     text-align: center;
-    width: 40vw;
+    /*width: 40vw;*/
     }
   footer {
     width: 100%;

@@ -2,7 +2,6 @@
 <html>
 <head>
 	<title>Take-Home Pay Calculator</title>
-	<!--<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no" />-->
 	<meta name="viewport" content="width=device-width" />
 	<meta charset=”utf-8”>
 	<link rel="stylesheet" href="styles.css">
@@ -21,13 +20,13 @@
 
 
 		<section class="inputs-section">
-			<div class="basic-input inline">
-				<div class="inline">Enter Salary: </div>
+			<div class="basic-input">
+				<div class="">Enter Salary: </div>
 				<span class="currency">£ </span><input id="inputIncome" name="inputIncome" type="number" min="0" max="99999999" step="500" pattern="\d*" autofocus>
 			</div>
-			<div class="basic-input inline">
-				<label for="scottishTax" class="inline">Use Scottish Tax Rates:</label>
-				<input id="scottishTax" type="checkbox" name="scottishTax" class="inline">
+			<div class="basic-input">
+				<label for="scottishTax" class="">Use Scottish Tax Rates:</label>
+				<input id="scottishTax" type="checkbox" name="scottishTax" class="">
 			</div>
 		</section> <!--inputs section end-->
 
@@ -56,7 +55,7 @@
 					<td class="advanced-input">
 						<div class="max-width">
 							<div>Pension contributions:</div>
-							<!--<span class="currency">£ </span>--><span class="percentage"><input class="pension-input" type="number" min="0" max="100"> %</span>
+							<span class="percentage"><input class="pension-input" type="number" min="0" max="100"> %</span>
 						</div>
 					</td>
 					<td class="advanced-input">
