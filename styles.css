@@ -130,6 +130,10 @@ input[type=number], select {
   border: 1px solid #b2b2b2;
 }
 
+input[type=checkbox], label:not(.radiobox-label) {
+  cursor: pointer;
+}
+
 .currency {
   padding: 0 2px 0 2px;
 }
