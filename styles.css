@@ -82,6 +82,8 @@ footer div.spacer {
 /* end Footer */
 
 label {
+  -webkit-user-select: none;
+  -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
 }
@@ -183,6 +185,8 @@ div.basic-input > * {
   padding: 10px;
   background-color: #eeeeee;
   border: 1px solid #b2b2b2;
+  -webkit-user-select: none;
+  -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
 }
@@ -271,6 +275,8 @@ label.radiobox-label {
   float: left;
   width: 33.333333333333333%;
   padding: 10px 0 10px 0;
+  -webkit-user-select: none;
+  -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
 }
