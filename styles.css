@@ -130,6 +130,7 @@ label {
 input[type=number], select {
   height: 19px;
   border: 1px solid #b2b2b2;
+  padding-left: 2px;
 }
 
 input[type=checkbox], label:not(.radiobox-label) {
