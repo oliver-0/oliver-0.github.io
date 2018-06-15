@@ -28,7 +28,6 @@
 			</div>
 			<div class="basic-input">
 				<label for="scottishTax" class="">Use Scottish Tax Rates:</label><input id="scottishTax" type="checkbox" name="scottishTax" class="">
-
 			</div>
 		</section> <!--inputs section end-->
 
@@ -109,10 +108,10 @@
 
 	<script type="text/javascript">
 		// This function calculates the output Take Home Pay
-		//	It runs whenever any inputs' values are changed
+		//	It runs on pageload and whenever any inputs' values are changed
 		function calculateTakeHomePay() {
-			var income = document.getElementById('inputIncome').value;
-			// This takes the LoanType from the radio buttons in the form inputs
+			var income = document.getElementById('inputIncome').value * (1 - document.getElementById('pension-input').value/100);
+			  //income minus pension contributions
 			var studentLoanType = document.querySelector('select[id="studentLoan"]').value;
 			//console.log("student loan type "+studentLoanType)
 			//console.log("tax:"+tax(income))

@@ -2,13 +2,14 @@ google.charts.load('current', {'packages':['corechart']});
 google.charts.setOnLoadCallback(drawChart);
 
 function drawChart() {
-  //drawChart() is called at the end of calculateTakeHomePay(), so all of the inputs' values should be stored
+  //drawChart() is called at the end of calculateTakeHomePay(), and on window.resize
   var chartPlaceholder = "Enter a salary";
-  var income = document.getElementById('inputIncome').value;
+	var income = document.getElementById('inputIncome').value * (1 - document.getElementById('pension-input').value/100);
+	var pension = document.getElementById('inputIncome').value * (document.getElementById('pension-input').value/100);
   var studentLoanType = document.querySelector('select[id="studentLoan"]').value;
   var NIExemption = document.getElementById('noNI').checked;
   function tax(x) {
-    if (document.getElementById('scottishTax').checked == true) {
+    if (document.getElementById('scottishTax').checked === true) {
       return scot_taxPayable(x);
     } else {
       return taxPayable(x);
@@ -16,25 +17,18 @@ function drawChart() {
   }
   var after_Tax_Annual = (income - tax(income) - studentLoan(income, studentLoanType) - totalNIContsModified(income, NIExemption));
   var takeHome = (1/100)*Math.floor((after_Tax_Annual)*100);
-    //takeHome = parseInt(takeHome.toFixed(0));
   var NIConts = totalNIContsModified(income, NIExemption);
-    //NIConts = parseInt(NIConts.toFixed(0));
   var studentLoan1, studentLoan2;
   if (studentLoanType == "plan2") {
     studentLoan1 = 0;
     studentLoan2 = studentLoan(income, studentLoanType);
-      //studentLoan2 = parseInt(studentLoan2.toFixed(0));
   } else if (studentLoanType == "plan1") {
     studentLoan1 = studentLoan(income, studentLoanType);
-      //studentLoan1 = parseInt(studentLoan1.toFixed(0));
     studentLoan2 = 0;
   } else {
     studentLoan1 = 0;
     studentLoan2 = 0;
   }
-    //chartBasic = parseInt(chartBasic.toFixed(0));
-    //chartHigher = parseInt(chartHigher.toFixed(0));
-    //chartAdditional = parseInt(chartAdditional.toFixed(0));
 
   var data;
   var non_scot_data = google.visualization.arrayToDataTable([
@@ -45,6 +39,8 @@ function drawChart() {
     ['NI Contributions', NIConts],
     ['Student Loan (Plan 1)', studentLoan1],
     ['Student Loan (Plan 2)', studentLoan2],
+    ['Pension Contributions', pension],
+    ['', 0], //placeholder
     ['Take-Home Pay', takeHome]
   ]);
 
@@ -58,12 +54,12 @@ function drawChart() {
     ['NI Contributions', NIConts],
     ['Student Loan (Plan 1)', studentLoan1],
     ['Student Loan (Plan 2)', studentLoan2],
-    ['', 0], //placeholders
-    ['', 0], //placeholders
+    ['Pension Contributions', pension],
+    ['', 0], //placeholder
     ['Take-Home Pay', takeHome]
   ]);
 
-  if (document.getElementById('scottishTax').checked == true) {
+  if (document.getElementById('scottishTax').checked === true) {
     data = scot_data;
   } else {
     data = non_scot_data;
@@ -84,11 +80,9 @@ function drawChart() {
 
   var chart = new google.visualization.PieChart(document.getElementById('pieChart'));
   //chart.draw(data, options);
-  if (chartBasic + chartHigher + chartAdditional + studentLoan1 + studentLoan2 + NIConts + takeHome == 0) {
-    //document.getElementById("pieChart").innerHTML="";
+  if (chartBasic + chartHigher + chartAdditional + studentLoan1 + studentLoan2 + NIConts + takeHome === 0) {
     chart.draw(data, options);
   } else {
-    //document.getElementById("pieChart").innerHTML="";
     chart.draw(data, options);
   }
 }

@@ -7,6 +7,7 @@ document.getElementById('inputIncome').oninput = calculateTakeHomePay; //note: c
 document.getElementById('studentLoan').onchange = calculateTakeHomePay;
 document.getElementById('noNI').onchange = calculateTakeHomePay;
 document.getElementById('scottishTax').onchange = calculateTakeHomePay;
+document.getElementById('pension-input').oninput = calculateTakeHomePay;
 
 
 //Remove keyboard focus from input elements on press Enter - hides mobile number input keyboards when you press 'Go'.
@@ -23,7 +24,7 @@ width = window.innerWidth;
 window.addEventListener('resize', drawChartCheck);
 function drawChartCheck() {
 	if (width !== window.innerWidth) {
-		drawChart(); //prevents drawChart from running where width did not change on resize - stops screen jumping when mobile browsers' address bars show/hide
+		drawChart(); //prevents drawChart from running where width did not change on resize - stops screen jumping from chart update when mobile browsers' address bars show/hide
 	}
 	width = window.innerWidth;
 }
