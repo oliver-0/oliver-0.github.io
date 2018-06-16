@@ -60,11 +60,18 @@
 						</div>
 					</td>
 					<td class="advanced-input">
+					  <div class="max-width">
+					    <input id="blind" type="checkbox" value="blind"><label for="blind">I receive Blind Person's Allowance</label>
+					  </div>
+					</td>
+					<!--
+					<td class="advanced-input">
 						<div class="max-width">
 							<div>Tax-free benefits:</div>
 							<span class="currency">£ </span><input type="number" min="0" max="99999999" class="input">
 						</div>
 					</td>
+					-->
 				</tr>
 				</table>
 			</div>
@@ -113,18 +120,28 @@
 			var income = document.getElementById('inputIncome').value * (1 - document.getElementById('pension-input').value/100);
 			  //income minus pension contributions
 			var studentLoanType = document.querySelector('select[id="studentLoan"]').value;
-			//console.log("student loan type "+studentLoanType)
+			//console.log("student loan type: "+studentLoanType)
 			//console.log("tax:"+tax(income))
 			//console.log("studentLoan:"+studentLoan(income, studentLoanType))
 			//console.log("totalNIContsModified:"+totalNIContsModified(income, NIExemption))
 			//console.log("personalAllowanceCap"+personalAllowanceCap(income))
+			var isScottishTax = document.getElementById('scottishTax').checked;
 			var NIExemption = document.getElementById('noNI').checked;
+			var isBlind = document.getElementById('blind').checked;
 			function tax(x) {
-				if (document.getElementById('scottishTax').checked == true) {
-					return scot_taxPayable(x);
-				} else {
-					return taxPayable(x);
-				}
+			  if (isBlind === true) { //Blind people receive £2,390 additional personal Allowance, which can be considered 'non-taxable income'.
+  				if (isScottishTax === true) {
+  					return scot_taxPayable(x - 2390);
+  				} else {
+  					return taxPayable(x - 2390);
+  				}
+			  } else {
+  				if (isScottishTax === true) {
+  					return scot_taxPayable(x);
+  				} else {
+  					return taxPayable(x);
+  				}
+			  }
 			}
 			var after_Tax_Annual = (income - tax(income) - studentLoan(income, studentLoanType) - totalNIContsModified(income, NIExemption));
 			//round the annual take-home pay down to 2dp, then divide into monthly and weekly equivalents

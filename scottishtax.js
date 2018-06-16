@@ -20,6 +20,11 @@ var chartStarter, chartIntermediate, chartTop; //scottish-only
 // Declarations for personalAllowanceCap():
 var personal_Allowance_Cap_Basic, personal_Allowance_Max_Income, personal_Allowance_Min_Income;
 personal_Allowance_Cap_Basic = 11850;
+var isBlind = document.getElementById('blind').checked;
+if (isBlind) {
+  personal_Allowance_Cap_Basic = 11850 + 2390; //Blind Person's Allowance
+}
+personal_Allowance_Cap_noBlind = 11850;
 personal_Allowance_Max_Income = 123700;
 personal_Allowance_Min_Income = 100000;
 //

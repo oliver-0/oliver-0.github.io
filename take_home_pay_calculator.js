@@ -8,6 +8,7 @@ document.getElementById('studentLoan').onchange = calculateTakeHomePay;
 document.getElementById('noNI').onchange = calculateTakeHomePay;
 document.getElementById('scottishTax').onchange = calculateTakeHomePay;
 document.getElementById('pension-input').oninput = calculateTakeHomePay;
+document.getElementById('blind').onchange = calculateTakeHomePay;
 
 
 //Remove keyboard focus from input elements on press Enter - hides mobile number input keyboards when you press 'Go'.
@@ -104,6 +105,11 @@ function roundDownToNearest2Pound(income){ //rounds a number down to the nearest
   return 2 * Math.floor(income/2);
 }
 function personalAllowanceCap(income) { //takes per annum Gross Income as an input, returns annual Personal Allowance
+  var isBlind = document.getElementById('blind').checked;
+  if (isBlind === true) {
+  income = income + 2390; //personal allowance is income-dependant, not taxable income-dependant, so for Blind people it takes into account income before blind allowance is removed
+  }
+  //console.log
   if (income >= personal_Allowance_Max_Income) { //personal allowance over £123,700 is £0
     return  0;
   } else if (income >= personal_Allowance_Min_Income) { //personal allowance over £100,000 is variable (goes down by £1 every £2 you go over £100,000 income)

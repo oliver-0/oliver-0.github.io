@@ -7,14 +7,24 @@ function drawChart() {
 	var income = document.getElementById('inputIncome').value * (1 - document.getElementById('pension-input').value/100);
 	var pension = document.getElementById('inputIncome').value * (document.getElementById('pension-input').value/100);
   var studentLoanType = document.querySelector('select[id="studentLoan"]').value;
-  var NIExemption = document.getElementById('noNI').checked;
-  function tax(x) {
-    if (document.getElementById('scottishTax').checked === true) {
-      return scot_taxPayable(x);
-    } else {
-      return taxPayable(x);
-    }
-  }
+	var isScottishTax = document.getElementById('scottishTax').checked;
+	var NIExemption = document.getElementById('noNI').checked;
+	var isBlind = document.getElementById('blind').checked;
+	function tax(x) {
+	  if (isBlind === true) {
+			if (isScottishTax === true) {
+				return scot_taxPayable(x - 2390);
+			} else {
+				return taxPayable(x - 2390);
+			}
+	  } else {
+			if (isScottishTax === true) {
+				return scot_taxPayable(x);
+			} else {
+				return taxPayable(x);
+			}
+	  }
+	}
   var after_Tax_Annual = (income - tax(income) - studentLoan(income, studentLoanType) - totalNIContsModified(income, NIExemption));
   var takeHome = (1/100)*Math.floor((after_Tax_Annual)*100);
   var NIConts = totalNIContsModified(income, NIExemption);
