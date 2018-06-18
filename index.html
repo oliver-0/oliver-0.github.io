@@ -20,7 +20,6 @@
 				take home after Tax, National Insurance, Student Loans and more.</p>
 		</section> <!--introduction section end-->
 
-
 		<section class="inputs-section">
 			<div class="basic-input">
 				<div class="">Enter Salary: </div>
@@ -38,7 +37,7 @@
 				<tr>
 					<td class="advanced-input">
 						<div class="max-width">
-							<div>Student Loan type:</div>
+							<div>Student Loan type: <span id="studentLoanContainer"><button id="popupButton" class="popupButton">?</button><span id="popup-studentLoan" class="popup">Plan 1 - Your course started before 1 September 2012<br>Plan 2 - Your course started after 1 September 2012</span></span></div>
 								<select id="studentLoan" name="studentLoan">
 									<option class="studentLoanOption" value="plan0">No Student Loan</option>
 									<option class="studentLoanOption" value="plan1">Student Loan Plan 1</option>
@@ -61,7 +60,7 @@
 					</td>
 					<td class="advanced-input">
 					  <div class="max-width">
-					    <input id="blind" type="checkbox" value="blind"><label for="blind">I receive Blind Person's Allowance:</label>
+					    <input id="isBlind" type="checkbox" value="blind"><label for="isBlind">I receive Blind Person's Allowance:</label>
 					  </div>
 					</td>
 				</tr>
@@ -85,15 +84,14 @@
 			</div>
 		</section> <!--radiobox section end-->
 
+  	<div id="pieChart"></div>
+  
+  	<section class="afterword">
+  		<p>afterword</p>
+  	</section> <!--afterword section end-->
 
-	<div id="pieChart"></div>
-
-	<section class="afterword">
-		<p>afterword</p>
-	</section>
-
-</main> <!--mainContent end-->
-
+  </main> <!--mainContent end-->
+  
 	<div class="footer-parent">
 		<footer>
 			<div class="footer-flex-container">
@@ -119,7 +117,7 @@
 			//console.log("personalAllowanceCap"+personalAllowanceCap(income))
 			var isScottishTax = document.getElementById('scottishTax').checked;
 			var NIExemption = document.getElementById('noNI').checked;
-			var isBlind = document.getElementById('blind').checked;
+			var isBlind = document.getElementById('isBlind').checked;
 			function tax(x) {
 			  if (isBlind === true) { //Blind people receive £2,390 additional personal Allowance, which can be considered 'non-taxable income'.
   				if (isScottishTax === true) {
@@ -146,6 +144,7 @@
 			drawChart();
 		}
 	</script>
+	
 	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 	<script type="text/javascript" src="chart.js"></script>
 	<script type="text/javascript" src="take_home_pay_calculator.js"></script>

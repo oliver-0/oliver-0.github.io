@@ -9,7 +9,7 @@ function drawChart() {
   var studentLoanType = document.querySelector('select[id="studentLoan"]').value;
 	var isScottishTax = document.getElementById('scottishTax').checked;
 	var NIExemption = document.getElementById('noNI').checked;
-	var isBlind = document.getElementById('blind').checked;
+	var isBlind = document.getElementById('isBlind').checked;
 	function tax(x) {
 	  if (isBlind === true) {
 			if (isScottishTax === true) {
