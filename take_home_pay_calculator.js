@@ -121,7 +121,7 @@ function roundDownToNearest2Pound(income){ //rounds a number down to the nearest
   return 2 * Math.floor(income/2);
 }
 function personalAllowanceCap(income) { //takes per annum Gross Income as an input, returns annual Personal Allowance
-  var isBlind = document.getElementById('blind').checked;
+  var isBlind = document.getElementById('isBlind').checked;
   if (isBlind === true) {
   income = income + 2390; //personal allowance is income-dependant, not taxable income-dependant, so for Blind people it takes into account income before blind allowance is removed
   }
