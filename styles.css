@@ -270,6 +270,7 @@ div.basic-input > * {
   position: relative;
   display: inline-block;
   float: right;
+  margin-left: 2px;
 }
 .popupButton {
   padding: 0;
@@ -324,7 +325,7 @@ div.basic-input > * {
 
 /* Yearly/Monthly/Weekly output box */
 label.radiobox-label {
-  /* display: block; leaves a small gap to the right - doesn't seem to like 33.33% width, but flex seems to handle it fine?*/
+  /* display: block; leaves a small gap to the right - doesn't seem to like 33.33% width, but flex seems to handle it fine*/
   display: flex;
   justify-content: center;
   height: 100%;
@@ -492,6 +493,9 @@ label.radiobox-label:nth-of-type(2) {
   }
   .advanced-input * {
     display: block;
+  }
+  #studentLoanContainer {
+    margin-right: 5px;
   }
   .popup {
     white-space: normal;
