@@ -3,7 +3,6 @@ google.charts.setOnLoadCallback(drawChart);
 
 function drawChart() {
   //drawChart() is called at the end of calculateTakeHomePay(), and on window.resize
-  var chartPlaceholder = "Enter a salary";
 	var income = document.getElementById('inputIncome').value * (1 - document.getElementById('pension-input').value/100);
 	var pension = document.getElementById('inputIncome').value * (document.getElementById('pension-input').value/100);
   var studentLoanType = document.querySelector('select[id="studentLoan"]').value;

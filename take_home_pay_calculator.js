@@ -1,8 +1,9 @@
-//initial run to handle auto-filled inputs (inputs that have values on pageload) - timeout is to cover google chart loadtime
+//calculateTakeHomePay() can be found in a <script> tag at the bottom of index.html
+//initial calculateTakeHomePay run to handle auto-filled inputs (inputs that have values on pageload) - timeout is to cover google chart loadtime
 window.setTimeout(calculateTakeHomePay, 750);
 
 
-//Subsequent runs whenever an input value is changed
+//Subsequent calculateTakeHomePay runs whenever an input value is changed
 document.getElementById('inputIncome').oninput = calculateTakeHomePay; //note: calculateTakeHomePay also calls drawChart();
 document.getElementById('studentLoan').onchange = calculateTakeHomePay;
 document.getElementById('noNI').onchange = calculateTakeHomePay;
@@ -19,7 +20,7 @@ document.getElementById('popupButton').onclick = togglePopup;
 document.getElementById('popup-studentLoan').onclick = togglePopup;
 document.getElementById('popupButton').onblur = function hidePopup() {
   document.getElementById('popup-studentLoan').classList.remove("visible");
-}
+};
 
 
 //Remove keyboard focus from input elements on press Enter - hides mobile number input keyboards when you press 'Go'.
@@ -53,10 +54,10 @@ function numberWithCommas(x) {
 //show/hide 'More Options box' on click of the header box, using classList.toggle
 document.getElementById('advancedHeader').onclick = function toggleAdvancedContent() {
   classListToggle("advancedHeader", "active");
-}
+};
 
 
-//IE/Edge-compatible equivalent to classList.toggle
+//IE&Edge-compatible equivalent to classList.toggle
 function classListToggle(elementID, classToToggle) {
   //this.classList.toggle("active"); //old one-liner that worked for all but IE/Edge
   var e = document.getElementById(elementID);
@@ -161,9 +162,9 @@ function plan2StudentLoan(income) { //takes per annum Gross Income as an input, 
 }
 // This function selects the right Student Loan Repayment Calculation Function and calculates the monthly repayment based on the Income and Loan Type variables
 function studentLoan(income, loanType) {
-  if (loanType == "plan2") {
+  if (loanType === "plan2") {
     return plan2StudentLoan(income);
-  } else if (loanType == "plan1") {
+  } else if (loanType === "plan1") {
     return plan1StudentLoan(income);
   } else {
     return 0;
