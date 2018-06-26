@@ -196,6 +196,12 @@ div.basic-input > * {
   background-color: #dedede;
 }
 
+.advanced-header:focus {
+  background-color: #dedede;
+  outline: none;
+  
+}
+
 .advanced-header::after {
   content: "\002B";
   font-size: 14px;
@@ -324,6 +330,16 @@ div.basic-input > * {
 
 
 /* Yearly/Monthly/Weekly output box */
+
+[type="radio"].radiobox-button {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px; margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+}
 label.radiobox-label {
   /* display: block; leaves a small gap to the right - doesn't seem to like 33.33% width, but flex seems to handle it fine*/
   display: flex;
@@ -366,6 +382,14 @@ label.radiobox-label:nth-of-type(2) {
   background-color: #f8f8f8;
 }
 
+[type="radio"]:focus:checked+label.radiobox-label {
+  background-color: #f8f8f8;
+}
+
+[type="radio"]:focus:not(:checked)+label.radiobox-label {
+  background-color: #dedede;
+}
+
 .top-wrapper {
   box-shadow: 3px 3px 5px #cccccc; /* on white: rbga(0,0,0,0.2), rgb(204,204,204) */
     box-shadow: 2px 2px 5px #dddddd;
@@ -402,13 +426,13 @@ label.radiobox-label:nth-of-type(2) {
 
 
 .afterword {
-  margin: 20px 40px;
+  margin: 0 40px 20px 40px;
 }
 
 #pieChart {
   display: inline-block;
   margin: 0 auto;
-  margin: 30px 0px;
+  margin: 30px 0 40px 0;
   height: 200px;
   width: 400px;
   padding-left: 10px;
@@ -504,5 +528,9 @@ label.radiobox-label:nth-of-type(2) {
   }
   .popup::after {
     left: 50%;
+  }
+  .afterword {
+    width: 90vw;
+    margin: 20px auto;
   }
 }

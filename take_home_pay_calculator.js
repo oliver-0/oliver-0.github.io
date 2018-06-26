@@ -51,10 +51,14 @@ function numberWithCommas(x) {
 }
 
 
-//show/hide 'More Options box' on click of the header box, using classList.toggle
+//show & hide 'More Options box' on click of the header box, using classList.toggle
 document.getElementById('advancedHeader').onclick = function toggleAdvancedContent() {
   classListToggle("advancedHeader", "active");
 };
+  //also show/hide More Options on press Enter or Spacebar
+document.getElementById('advancedHeader').addEventListener('keyup',function(e){
+  if (e.which === 13 || e.which === 32) classListToggle("advancedHeader", "active");
+});
 
 
 //IE&Edge-compatible equivalent to classList.toggle

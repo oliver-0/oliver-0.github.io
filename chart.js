@@ -83,6 +83,8 @@ function drawChart() {
   var options = {
     title: 'Breakdown of yearly earnings',
     titleArea:{left:30},
+    //width: 400,
+    height: 198,
     pieSliceText: 'none',
     chartArea:{left:0,top:30,bottom:10,width:"100%",height:"100%"},
   };
