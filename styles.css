@@ -13,6 +13,7 @@ html {
   /*overflow-y: scroll;*/
   margin: 0;
   height: 100%;
+  -webkit-box-sizing: border-box;
   box-sizing: border-box;
   font-family: 'Roboto', sans-serif;
   font-size: 13px;
@@ -21,6 +22,7 @@ html {
 *,
 *:before,
 *:after {
+  -webkit-box-sizing: inherit;
   box-sizing: inherit;
   margin: 0 auto;
 }
@@ -56,17 +58,22 @@ footer {
 div.footer-flex-container {
   padding: 0 10px 0 10px;
   width: 800px;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -ms-flex-wrap: nowrap;
   flex-wrap: nowrap;
 }
 
 footer p {
   width: 75%;
   padding: 10px 0 0 0;
+  -ms-flex-shrink: 2;
   flex-shrink: 2;
 }
 
 footer a {
+  -ms-flex-shrink: 1;
   flex-shrink: 1;
   padding: 10px 0;
 }
@@ -147,11 +154,15 @@ input[type=checkbox], label:not(.radiobox-label) {
 
 /* Basic Inputs section*/
 .inputs-section {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
   margin: 0px 40px 0px 40px;
 }
 
 .basic-input {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
   display: inline-flex;
   font-size: 14px;
 }
@@ -163,6 +174,10 @@ div.basic-input > * {
 .basic-input > *:not(input) {
   margin-top: 1px;
   margin-bottom: 1px;
+}
+
+#inputIncome {
+  max-width: 100px;
 }
 
 #scottishTax {
@@ -178,6 +193,7 @@ div.basic-input > * {
 .advanced-section {
   margin-top: 20px;
   width: 720px;
+  -webkit-box-shadow: 2px 2px 5px #dddddd;
   box-shadow: 2px 2px 5px #dddddd;
 }
 
@@ -215,10 +231,10 @@ div.basic-input > * {
 .advanced-content {
   height: 0;
   width: 100%;
-  -webkit-transition: height 0.3s ease;
-  -moz-transition: height 0.3s ease;
-  -o-transition: height 0.3s ease;
-  -ms-transition: height 0.3s ease;
+  -webkit-transition: height 0.2s ease-out;
+  -moz-transition: height 0.2s ease-out;
+  -o-transition: height 0.2s ease-out;
+  -ms-transition: height 0.2s ease-out;
   transition: height 0.2s ease-out;
 }
 
@@ -264,8 +280,13 @@ div.basic-input > * {
   display: inline-block;
 }
 
-.advanced-input #pension-input {
+#studentLoan {
+  max-width: 150px;
+}
+
+#pension-input {
   display: inline-block;
+  max-width: 65px;
 }
 /* end More Options (advanced) section */
 
@@ -342,7 +363,11 @@ div.basic-input > * {
 }
 label.radiobox-label {
   /* display: block; leaves a small gap to the right - doesn't seem to like 33.33% width, but flex seems to handle it fine*/
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
   justify-content: center;
   height: 100%;
   font-weight: bold;
@@ -391,8 +416,8 @@ label.radiobox-label:nth-of-type(2) {
 }
 
 .top-wrapper {
-  box-shadow: 3px 3px 5px #cccccc; /* on white: rbga(0,0,0,0.2), rgb(204,204,204) */
-    box-shadow: 2px 2px 5px #dddddd;
+  -webkit-box-shadow: 2px 2px 5px #dddddd;
+  box-shadow: 2px 2px 5px #dddddd;
   border-top: 1px solid rgba(0,0,0,0.3);
   border-left: 1px solid rgba(0,0,0,0.3);
   border-right: 1px solid rgba(0,0,0,0.3);
@@ -406,6 +431,7 @@ label.radiobox-label:nth-of-type(2) {
   height: 100%;
   text-align: center;
   background-color: #ffffff;
+  -webkit-box-shadow: 2px 2px 5px #dddddd;
   box-shadow: 2px 2px 5px #dddddd;
   border: 1px solid rgba(0,0,0,0.3);
   z-index: 3;
@@ -440,6 +466,7 @@ label.radiobox-label:nth-of-type(2) {
   width: 400px;
   padding-left: 10px;
   border: 1px solid #b2b2b2;
+  -webkit-box-shadow: 2px 2px 5px #dddddd;
   box-shadow: 2px 2px 5px #dddddd;
 }
 
@@ -514,7 +541,7 @@ footer a {
   margin: 8px auto 8px 3px;
   height: 14px;
   width: 14px;
-}
+  }
   .advanced-input span.currency {
     float: left;
     margin: 2px auto 2px auto;

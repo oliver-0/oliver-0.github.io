@@ -26,9 +26,9 @@ document.getElementById('popupButton').onblur = function hidePopup() {
 //Remove keyboard focus from input elements on press Enter - hides mobile number input keyboards when you press 'Go'.
 var inputs = document.getElementsByClassName('input');
 for (var i = 0; i < inputs.length; i++) {
-	inputs[i].addEventListener('keyup',function(e){
-			if (e.which == 13) this.blur();
-	});
+  inputs[i].addEventListener('keyup',function(e){
+      if (e.which == 13) this.blur();
+  });
 }
 
 
@@ -36,10 +36,10 @@ for (var i = 0; i < inputs.length; i++) {
 width = window.innerWidth;
 window.addEventListener('resize', drawChartCheck);
 function drawChartCheck() {
-	if (width !== window.innerWidth) {
-		drawChart(); //prevents drawChart from running where width did not change on resize - stops screen jumping from chart update when mobile browsers' address bars show/hide
-	}
-	width = window.innerWidth;
+  if (width !== window.innerWidth) {
+    drawChart(); //prevents drawChart from running where width did not change on resize - stops screen jumping from chart update when mobile browsers' address bars show/hide
+  }
+  width = window.innerWidth;
 }
 
 
@@ -197,9 +197,9 @@ function totalNIConts(income){ //takes per annum Gross Income as an input, retur
 }
 //modified function to accept 2nd argument, for those exempt to paying National Insurance
 function totalNIContsModified(income, exemption) {
-	if (exemption === true) {
-		return 0;
-	} else {
-		return totalNIConts(income);
-	}
+  if (exemption === true) {
+    return 0;
+  } else {
+    return totalNIConts(income);
+  }
 }
