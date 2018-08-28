@@ -1,14 +1,21 @@
 //calculateTakeHomePay() can be found in a <script> tag at the bottom of index.html
 //initial calculateTakeHomePay run to handle auto-filled inputs (inputs that have values on pageload) - timeout is to cover google chart loadtime
-window.setTimeout(calculateTakeHomePay, 750);
+window.setTimeout(function pageLoaded() {
+  document.getElementById('inputIncome').value = "25000"; //sets an initial default value to show graphs
+  document.getElementById('inputIncome').style.color = "#808080"; //colours the default value a lighter grey - will overwrite when input is changed
+  calculateTakeHomePay();
+}, 750);
 
 
 //Subsequent calculateTakeHomePay runs whenever an input value is changed
-document.getElementById('inputIncome').oninput = calculateTakeHomePay; //note: calculateTakeHomePay also calls drawChart();
+document.getElementById('inputIncome').oninput = function inputChanged() {
+  calculateTakeHomePay; //note: calculateTakeHomePay also calls drawChart();
+	document.getElementById('inputIncome').style.color = "#000000"; //reset color of the input income box text from the greyed example on pageload
+};
 document.getElementById('studentLoan').onchange = calculateTakeHomePay;
 document.getElementById('noNI').onchange = calculateTakeHomePay;
 document.getElementById('scottishTax').onchange = calculateTakeHomePay;
-document.getElementById('pension-input').oninput = calculateTakeHomePay;
+document.getElementById('inputPension').oninput = calculateTakeHomePay;
 document.getElementById('isBlind').onchange = calculateTakeHomePay;
 
 
@@ -27,7 +34,7 @@ document.getElementById('popupButton').onblur = function hidePopup() {
 var inputs = document.getElementsByClassName('input');
 for (var i = 0; i < inputs.length; i++) {
   inputs[i].addEventListener('keyup',function(e){
-      if (e.which == 13) this.blur();
+    if (e.which == 13) this.blur();
   });
 }
 
@@ -36,7 +43,7 @@ for (var i = 0; i < inputs.length; i++) {
 width = window.innerWidth;
 window.addEventListener('resize', drawChartCheck);
 function drawChartCheck() {
-  if (width !== window.innerWidth) {
+    if (width !== window.innerWidth) {
     drawChart(); //prevents drawChart from running where width did not change on resize - stops screen jumping from chart update when mobile browsers' address bars show/hide
   }
   width = window.innerWidth;
@@ -66,16 +73,16 @@ function classListToggle(elementID, classToToggle) {
   //this.classList.toggle("active"); //old one-liner that worked for all but IE/Edge
   var e = document.getElementById(elementID);
   if (e.classList) {
-    e.classList.toggle(classToToggle);
+  e.classList.toggle(classToToggle);
   } else {
-    // For IE9+
-    var classes = e.className.split(" ");
-    var i = classes.indexOf(classToToggle);
-    if (i>=0)
-      classes.splice(i,1);
-    else
-      classes.push(classToToggle);
-      e.className = classes.join(" ");
+  // For IE9+
+  var classes = e.className.split(" ");
+  var i = classes.indexOf(classToToggle);
+  if (i>=0)
+  classes.splice(i,1);
+  else
+  classes.push(classToToggle);
+  e.className = classes.join(" ");
   }
 }
 
@@ -105,19 +112,19 @@ function taxPayable(income) {
   chartHigher = 0;
   chartBasic = 0;
   if (income >= higher_Rate_Cap) { //if income is over £150k, you get all three tax bands.
-    chartAdditional = (income - higher_Rate_Cap) * additional_Rate;
-    chartHigher = (higher_Rate_Cap - basic_Rate_Cap + (personal_Allowance_Cap_Basic - personalAllowanceCap(income)) ) * higher_Rate;
-    chartBasic = (basic_Rate_Cap - personal_Allowance_Cap_Basic) * basic_Rate;
-    return ((income - higher_Rate_Cap) * additional_Rate) + ((higher_Rate_Cap - basic_Rate_Cap + (personal_Allowance_Cap_Basic - personalAllowanceCap(income)) ) * higher_Rate) + ((basic_Rate_Cap - personal_Allowance_Cap_Basic) * basic_Rate);
+  chartAdditional = (income - higher_Rate_Cap) * additional_Rate;
+  chartHigher = (higher_Rate_Cap - basic_Rate_Cap + (personal_Allowance_Cap_Basic - personalAllowanceCap(income)) ) * higher_Rate;
+  chartBasic = (basic_Rate_Cap - personal_Allowance_Cap_Basic) * basic_Rate;
+  return ((income - higher_Rate_Cap) * additional_Rate) + ((higher_Rate_Cap - basic_Rate_Cap + (personal_Allowance_Cap_Basic - personalAllowanceCap(income)) ) * higher_Rate) + ((basic_Rate_Cap - personal_Allowance_Cap_Basic) * basic_Rate);
   } else if(income >= basic_Rate_Cap) { //if income is over £46.5k (and under £150k), you only get Basic and Higher Rate Tax.
-    chartHigher = (income - basic_Rate_Cap + (personal_Allowance_Cap_Basic - personalAllowanceCap(income))) * higher_Rate;
-    chartBasic = (basic_Rate_Cap - personal_Allowance_Cap_Basic) * basic_Rate;
-    return ((income - basic_Rate_Cap + (personal_Allowance_Cap_Basic - personalAllowanceCap(income))) * higher_Rate) + ((basic_Rate_Cap - personal_Allowance_Cap_Basic) * basic_Rate);
+  chartHigher = (income - basic_Rate_Cap + (personal_Allowance_Cap_Basic - personalAllowanceCap(income))) * higher_Rate;
+  chartBasic = (basic_Rate_Cap - personal_Allowance_Cap_Basic) * basic_Rate;
+  return ((income - basic_Rate_Cap + (personal_Allowance_Cap_Basic - personalAllowanceCap(income))) * higher_Rate) + ((basic_Rate_Cap - personal_Allowance_Cap_Basic) * basic_Rate);
   } else if(income >= personal_Allowance_Cap_Basic) { //if income is over £11,850 (and under £46.5k) you only get Basic Rate Tax.
-    chartBasic = (income - personal_Allowance_Cap_Basic) * basic_Rate;
-    return (income - personal_Allowance_Cap_Basic) * basic_Rate;
+  chartBasic = (income - personal_Allowance_Cap_Basic) * basic_Rate;
+  return (income - personal_Allowance_Cap_Basic) * basic_Rate;
   } else {
-    return 0;
+  return 0;
   }
 }
 // personalAllowanceCap - calculates the annual Personal Allowance based on gross income
@@ -132,11 +139,11 @@ function personalAllowanceCap(income) { //takes per annum Gross Income as an inp
   }
   //console.log
   if (income >= personal_Allowance_Max_Income) { //personal allowance over £123,700 is £0
-    return  0;
+  return  0;
   } else if (income >= personal_Allowance_Min_Income) { //personal allowance over £100,000 is variable (goes down by £1 every £2 you go over £100,000 income)
-    return personal_Allowance_Cap_Basic - ((roundDownToNearest2Pound(income) - personal_Allowance_Min_Income) * 0.5 );
+  return personal_Allowance_Cap_Basic - ((roundDownToNearest2Pound(income) - personal_Allowance_Min_Income) * 0.5 );
   } else { //personal allowance under £100,000 is £11,850
-    return personal_Allowance_Cap_Basic;
+  return personal_Allowance_Cap_Basic;
   }
 }
 
