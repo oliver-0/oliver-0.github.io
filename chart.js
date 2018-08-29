@@ -3,8 +3,12 @@ google.charts.setOnLoadCallback(drawChart);
 
 function drawChart() {
   //drawChart() is called at the end of calculateTakeHomePay(), and on window.resize
-	var income = document.getElementById('inputIncome').value * (1 - document.getElementById('inputPension').value/100);
-	var pension = document.getElementById('inputIncome').value * (document.getElementById('inputPension').value/100);
+  var inputIncome = document.getElementById('inputIncome').value;
+	var income = inputIncome * (1 - document.getElementById('inputPension').value/100);
+	if (inputIncome === "") {
+	  income = 25000;
+	}
+	var pension = inputIncome * (document.getElementById('inputPension').value/100);
   var studentLoanType = document.querySelector('select[id="studentLoan"]').value;
 	var isScottishTax = document.getElementById('scottishTax').checked;
 	var NIExemption = document.getElementById('noNI').checked;

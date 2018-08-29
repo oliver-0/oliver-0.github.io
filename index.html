@@ -25,7 +25,7 @@
 		<section class="inputs-section">
 			<div class="basic-input">
 				<div class="">Enter Salary: </div>
-				<span class="currency">£ </span><input id="inputIncome" name="inputIncome" type="number" min="0" max="99999999" step="500" pattern="\d*" class="input" autofocus>
+				<span class="currency">£ </span><input id="inputIncome" name="inputIncome" type="number" min="0" max="99999999" step="500" placeholder="25000" pattern="\d*" class="input" autofocus>
 			</div>
 			<div class="basic-input">
 				<label for="scottishTax" class="">Use Scottish Tax Rates:</label><input id="scottishTax" type="checkbox" name="scottishTax" class="">
@@ -117,9 +117,13 @@
 		// This function calculates the output Take Home Pay
 		//	It runs on pageload and whenever any inputs' values are changed
 		function calculateTakeHomePay() {
-			var income = document.getElementById('inputIncome').value * (1 - document.getElementById('inputPension').value/100);
+		  var inputIncome = document.getElementById('inputIncome').value;
+			var income = inputIncome * (1 - document.getElementById('inputPension').value/100)
+			if (inputIncome === "") {
+			  income = 25000;
+			}
 			  //income minus pension contributions
-			var studentLoanType = document.querySelector('select[id="studentLoan"]').value;
+			var studentLoanType = document.getElementById('studentLoan').value;
 			//console.log("student loan type: "+studentLoanType)
 			//console.log("tax:"+tax(income))
 			//console.log("studentLoan:"+studentLoan(income, studentLoanType))
@@ -160,5 +164,6 @@
 	<script type="text/javascript" src="take_home_pay_calculator.js"></script>
 	<script type="text/javascript" src="radiobox.js"></script>
 	<script type="text/javascript" src="scottishtax.js"></script>
+	<script type="text/javascript" src="scripts.js"></script>
 </body>
 </html>

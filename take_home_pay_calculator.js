@@ -1,93 +1,3 @@
-//calculateTakeHomePay() can be found in a <script> tag at the bottom of index.html
-//initial calculateTakeHomePay run to handle auto-filled inputs (inputs that have values on pageload) - timeout is to cover google chart loadtime
-window.setTimeout(function pageLoaded() {
-  document.getElementById('inputIncome').value = "25000"; //sets an initial default value to show graphs
-  document.getElementById('inputIncome').style.color = "#808080"; //colours the default value a lighter grey - will overwrite when input is changed
-  calculateTakeHomePay();
-}, 750);
-
-
-//Subsequent calculateTakeHomePay runs whenever an input value is changed
-document.getElementById('inputIncome').oninput = function inputChanged() {
-  calculateTakeHomePay; //note: calculateTakeHomePay also calls drawChart();
-	document.getElementById('inputIncome').style.color = "#000000"; //reset color of the input income box text from the greyed example on pageload
-};
-document.getElementById('studentLoan').onchange = calculateTakeHomePay;
-document.getElementById('noNI').onchange = calculateTakeHomePay;
-document.getElementById('scottishTax').onchange = calculateTakeHomePay;
-document.getElementById('inputPension').oninput = calculateTakeHomePay;
-document.getElementById('isBlind').onchange = calculateTakeHomePay;
-
-
-//Popup functions
-function togglePopup() {
-  classListToggle("popup-studentLoan", "visible");
-}
-document.getElementById('popupButton').onclick = togglePopup;
-document.getElementById('popup-studentLoan').onclick = togglePopup;
-document.getElementById('popupButton').onblur = function hidePopup() {
-  document.getElementById('popup-studentLoan').classList.remove("visible");
-};
-
-
-//Remove keyboard focus from input elements on press Enter - hides mobile number input keyboards when you press 'Go'.
-var inputs = document.getElementsByClassName('input');
-for (var i = 0; i < inputs.length; i++) {
-  inputs[i].addEventListener('keyup',function(e){
-    if (e.which == 13) this.blur();
-  });
-}
-
-
-//added a drawChart to window.resize, so that when resizing in and out of the mobile threshold the chart doesn't overflow the page width
-width = window.innerWidth;
-window.addEventListener('resize', drawChartCheck);
-function drawChartCheck() {
-    if (width !== window.innerWidth) {
-    drawChart(); //prevents drawChart from running where width did not change on resize - stops screen jumping from chart update when mobile browsers' address bars show/hide
-  }
-  width = window.innerWidth;
-}
-
-
-//add comma thousand separators to a number
-function numberWithCommas(x) {
-  var parts = x.toString().split(".");
-  parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-  return parts.join(".");
-}
-
-
-//show & hide 'More Options box' on click of the header box, using classList.toggle
-document.getElementById('advancedHeader').onclick = function toggleAdvancedContent() {
-  classListToggle("advancedHeader", "active");
-};
-  //also show/hide More Options on press Enter or Spacebar
-document.getElementById('advancedHeader').addEventListener('keyup',function(e){
-  if (e.which === 13 || e.which === 32) classListToggle("advancedHeader", "active");
-});
-
-
-//IE&Edge-compatible equivalent to classList.toggle
-function classListToggle(elementID, classToToggle) {
-  //this.classList.toggle("active"); //old one-liner that worked for all but IE/Edge
-  var e = document.getElementById(elementID);
-  if (e.classList) {
-  e.classList.toggle(classToToggle);
-  } else {
-  // For IE9+
-  var classes = e.className.split(" ");
-  var i = classes.indexOf(classToToggle);
-  if (i>=0)
-  classes.splice(i,1);
-  else
-  classes.push(classToToggle);
-  e.className = classes.join(" ");
-  }
-}
-
-
-
 // - - - Income Tax and Personal Allowance Calculations - - - //
 //
 // taxPayable - calculates the total tax payable based on gross income
@@ -137,7 +47,6 @@ function personalAllowanceCap(income) { //takes per annum Gross Income as an inp
   if (isBlind === true) {
   income = income + 2390; //personal allowance is income-dependant, not taxable income-dependant, so for Blind people it takes into account income before blind allowance is removed
   }
-  //console.log
   if (income >= personal_Allowance_Max_Income) { //personal allowance over £123,700 is £0
   return  0;
   } else if (income >= personal_Allowance_Min_Income) { //personal allowance over £100,000 is variable (goes down by £1 every £2 you go over £100,000 income)
