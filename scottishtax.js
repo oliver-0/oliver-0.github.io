@@ -10,22 +10,22 @@ scot_intermediate_Rate = 0.21; //scottish-only
 scot_higher_Rate = 0.41;
 //additional_Rate = 0.45; //not used in Scottish Tax
 scot_top_Rate = 0.46;
-scot_starter_Rate_Cap = 13850;
-scot_basic_Rate_Cap = 24000;
-scot_intermediate_Rate_Cap = 43430;
+scot_starter_Rate_Cap = 14549;
+scot_basic_Rate_Cap = 24944;
+scot_intermediate_Rate_Cap = 44273;
 scot_higher_Rate_Cap = 150000;
 // // Declarations for the Chart outputs
 //var chartBasic, chartHigher, chartAdditional; //already declared in "take_home_pay_calculator.js"
 var chartStarter, chartIntermediate, chartTop; //scottish-only
 // // Declarations for personalAllowanceCap():
 var personal_Allowance_Cap_Basic, personal_Allowance_Max_Income, personal_Allowance_Min_Income;
-personal_Allowance_Cap_Basic = 11850;
+personal_Allowance_Cap_Basic = 12500;
 var isBlind = document.getElementById('isBlind').checked;
 if (isBlind) {
-  personal_Allowance_Cap_Basic = 11850 + 2390; //Blind Person's Allowance
+  personal_Allowance_Cap_Basic = 12500 + 2390; //Blind Person's Allowance
 }
-personal_Allowance_Cap_noBlind = 11850;
-personal_Allowance_Max_Income = 123700;
+personal_Allowance_Cap_noBlind = 12500;
+personal_Allowance_Max_Income = 125000;
 personal_Allowance_Min_Income = 100000;
 //
 function scot_taxPayable(income) {

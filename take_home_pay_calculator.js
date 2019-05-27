@@ -7,14 +7,14 @@ var basic_Rate, higher_Rate, additional_Rate, basic_Rate_Cap, higher_Rate_Cap;
 basic_Rate = 0.20;
 higher_Rate = 0.40;
 additional_Rate = 0.45;
-basic_Rate_Cap = 46350;
+basic_Rate_Cap = 50000;
 higher_Rate_Cap = 150000;
 // Declarations for the Chart outputs
 var chartBasic, chartHigher, chartAdditional;
 // Declarations for personalAllowanceCap():
 var personal_Allowance_Cap_Basic, personal_Allowance_Max_Income, personal_Allowance_Min_Income;
-personal_Allowance_Cap_Basic = 11850;
-personal_Allowance_Max_Income = 123700;
+personal_Allowance_Cap_Basic = 12500;
+personal_Allowance_Max_Income = 125000;
 personal_Allowance_Min_Income = 100000;
 //
 function taxPayable(income) {
@@ -98,14 +98,14 @@ function studentLoan(income, loanType) {
 // totalNIConts - works out the annual employee NI Contributions payable based on gross income
 // Declarations for totalNIConts():
 var basic_NI_Conts_Min_Income, higher_NI_Conts_Min_Income, basic_NI_Conts_Rate, higher_NI_Conts_Rate;
-basic_NI_Conts_Min_Income = 8424;
+basic_NI_Conts_Min_Income = 8632;
 basic_NI_Conts_Rate = 0.12;
-higher_NI_Conts_Min_Income = 46350;
+higher_NI_Conts_Min_Income = 50000;
 higher_NI_Conts_Rate = 0.02;
 function totalNIConts(income){ //takes per annum Gross Income as an input, returns annual NI Contributions payable
   if (income > higher_NI_Conts_Min_Income) {
     return ((income - higher_NI_Conts_Min_Income) * higher_NI_Conts_Rate) + ((higher_NI_Conts_Min_Income - basic_NI_Conts_Min_Income) * basic_NI_Conts_Rate);
-  }else if (income > basic_NI_Conts_Min_Income) {
+  } else if (income > basic_NI_Conts_Min_Income) {
     return (income - basic_NI_Conts_Min_Income) * basic_NI_Conts_Rate;
   } else {
     return 0;
