@@ -45,7 +45,7 @@ function roundDownToNearest2Pound(income){ //rounds a number down to the nearest
 function personalAllowanceCap(income) { //takes per annum Gross Income as an input, returns annual Personal Allowance
   var isBlind = document.getElementById('isBlind').checked;
   if (isBlind === true) {
-  income = income + 2390; //personal allowance is income-dependant, not taxable income-dependant, so for Blind people it takes into account income before blind allowance is removed
+  income = income + 2500; //personal allowance is income-dependant, not taxable income-dependant, so for Blind people it takes into account income before blind allowance is removed
   }
   if (income >= personal_Allowance_Max_Income) { //personal allowance over £123,700 is £0
   return  0;
@@ -62,9 +62,9 @@ function personalAllowanceCap(income) { //takes per annum Gross Income as an inp
 
 // planXStudentLoan - calculates the annual student loan plan repayment payable based on gross income
 var plan_1_Student_Loan_Threshold, plan_1_Student_Loan_Rate, plan_2_Student_Loan_Threshold, plan_2_Student_Loan_Rate;
-plan_1_Student_Loan_Threshold = 18330;
+plan_1_Student_Loan_Threshold = 19390;
 plan_1_Student_Loan_Rate = 0.09;
-plan_2_Student_Loan_Threshold = 25000;
+plan_2_Student_Loan_Threshold = 26575;
 plan_2_Student_Loan_Rate = 0.09;
 function plan1StudentLoan(income) { //takes per annum Gross Income as an input, returns annual Plan 1 Student Loan payable
   if (income > plan_1_Student_Loan_Threshold) {
@@ -98,7 +98,7 @@ function studentLoan(income, loanType) {
 // totalNIConts - works out the annual employee NI Contributions payable based on gross income
 // Declarations for totalNIConts():
 var basic_NI_Conts_Min_Income, higher_NI_Conts_Min_Income, basic_NI_Conts_Rate, higher_NI_Conts_Rate;
-basic_NI_Conts_Min_Income = 8632;
+basic_NI_Conts_Min_Income = 9500;
 basic_NI_Conts_Rate = 0.12;
 higher_NI_Conts_Min_Income = 50000;
 higher_NI_Conts_Rate = 0.02;
